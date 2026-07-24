@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image');
+            $table->string('unit')->default('piece');
             $table->unsignedInteger('stock_quantity')->default(0);
             $table->decimal('unit_price', 10, 2);
             $table->timestamps();

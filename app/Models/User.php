@@ -7,7 +7,6 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
@@ -46,5 +45,22 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
+
+    public function operatorOrders()
+    {
+        // Pasūtijumi, kuros lietotājs ir operators (orders.operator_id)
+        return $this->hasMany(Order::class, 'operator_id');
+    }
+
+    public function deliveryOrders()
+    {
+        // Pasūtījumi, kuros lietotājs ir kurjers (orders.delivery_person_id)
+        return $this->hasMany(Order::class, 'delivery_person_id');
     }
 }
