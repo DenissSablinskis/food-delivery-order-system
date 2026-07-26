@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('pages.home');
@@ -11,6 +12,8 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('pages.home');
 })->name('home');
+
+// Valodu parslegšanas maršruts
 
 Route::post('/locale/switch/{locale}', function (Request $request, string $locale) {
     $allowedLocales = ['lv', 'en'];
@@ -22,6 +25,8 @@ Route::post('/locale/switch/{locale}', function (Request $request, string $local
     return redirect()->back();
 })->name('locale.switch');
 
+// Autentifikācijas maršruti
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.store');
@@ -31,4 +36,6 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
+// Produktu lapas maršruts
 
+Route::get('/products', [ProductController::class, 'index']);

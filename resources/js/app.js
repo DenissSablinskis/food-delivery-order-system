@@ -37,3 +37,58 @@ themeToggleBtn.addEventListener('click', () => {
         localStorage.setItem('theme', 'dark');
     }
 });
+
+// ----------------PRĒCES DAUDZUMA MAIŅA------------------------------
+
+// Izvelēties prēču daudzumu, kuru pievienot grozam
+
+document.addEventListener('DOMContentLoaded', () => {
+    const quantityControls = document.querySelectorAll('.quantity-control');
+
+    quantityControls.forEach(control => {
+        const minusButton = control.querySelector('.quantity-minus');
+        const plusButton = control.querySelector('.quantity-plus');
+        const quantityInput = control.querySelector('.quantity-input');
+
+        const min = Number(quantityInput.min);
+        const max = Number(quantityInput.max);
+
+        // Minusa pogas funkcionalitāte
+
+        minusButton.addEventListener('click', () => {
+            let quantity = Number(quantityInput.value);
+
+            if (quantity > min) {
+                quantityInput.value = quantity - 1;
+            }
+        });
+
+        // Plusa pogas funkcionalitāte
+
+        plusButton.addEventListener('click', () => {
+            let quantity = Number(quantityInput.value);
+
+            if (quantity < max) {
+                quantityInput.value = quantity + 1;
+            }
+        });
+
+        // Daudzuma lauka uzvedība ievadot vertību <min, >max vai atstajot tukšumu
+
+        quantityInput.addEventListener('change', () => {
+            let quantity = Number(quantityInput.value);
+
+            if (quantity < min) {
+                quantityInput.value = min;
+            }
+
+            if (quantity > max) {
+                quantityInput.value = max;
+            }
+
+            if (isNaN(quantity)) {
+                quantityInput.value = min;
+            }
+        });
+    });
+});
