@@ -5,8 +5,8 @@
     @foreach($products as $product) 
         <div class='product-card'>
             <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
-            <p>{{ $product->name }}</p>
-            <p>Cena: {{ $product->unit_price }} / {{ $product->unit }}</p>
+            <p class="product-name">{{ $product->name }}</p>
+            <p><span class="product-price">Cena:</span> {{ $product->unit_price }} / {{ $product->unit }}</p>
             <form action="#" method="POST">
                 @csrf
 

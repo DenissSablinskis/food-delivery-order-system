@@ -28,6 +28,11 @@
     --auth-form-input-focus-border-color: #2563eb;
     --auth-form-input-focus-box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
     --auth-form-title-color: #111827;
+    --product-card-bg-color: beige;
+    --product-card-border-color: black;
+    --product-card-color: black;
+    --product-card-button-bg: linear-gradient(135deg, #2563eb, #1d4ed8);
+    --product-quantity-input-border-color: gray;
 }
 
 [data-theme="dark"] {
@@ -47,6 +52,34 @@
     --auth-form-input-focus-border-color: #60a5fa;
     --auth-form-input-focus-box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2);
     --auth-form-title-color: #f3f4f6;
+    --product-card-bg-color: #1f2937;
+    --product-card-border-color: #374151;
+    --product-card-color: #f3f4f6;
+    --product-card-button-bg: linear-gradient(135deg, #3b82f6, #2563eb);
+    --product-quantity-input-border-color: #4b5563;
+
+    .product-card {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        .product-name {
+            color: #f9fafb;
+        }
+        .product-price {
+            color: #d1d5db;
+        }
+        .quantity-input {
+            background-color: #111827;
+            color: #f9fafb;
+            &:focus {
+                outline: none;
+                border-color: #60a5fa;
+                box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+            }
+        }
+        .quantity-minus,
+        .quantity-plus {
+            color: #f9fafb;
+        }
+    }
 }
 
 /* Pamatstils */
@@ -398,6 +431,74 @@ main {
             text-decoration: underline;
         }
         
+    }
+
+    /* Produktu kartiņu stili */
+
+    .product-card {
+        background-color: var(--product-card-bg-color);
+        border: 1px solid var(--product-card-border-color);
+        border-radius: 10px;
+        padding: 10px;
+        height: max-content;
+        width: 100%;
+        max-width: 350px;
+        margin: 20px auto;
+        color: var(--product-card-color);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        img{
+            max-width: 150px;
+            height: auto;
+            margin: 0 auto;
+        }
+        .product-name,
+        .product-price {
+            font-weight: bold;
+        }
+
+        p, form {
+            margin: 0;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        button[type="submit"]{
+            width: 70%;
+            height: 40px;
+            margin-top: 8px;
+            border: 0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: #ffffff;
+            cursor: pointer;
+            background: var(--product-card-button-bg);
+            box-shadow: 0 10px 24px rgba(37, 99, 235, 0.28);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+            &:hover {
+                transform: translateY(-1px);
+                filter: brightness(1.02);
+                box-shadow: 0 12px 28px rgba(37, 99, 235, 0.34);
+            }
+        }
+        .quantity-input {
+            border: 1px solid var(--product-quantity-input-border-color);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 15px;
+            appearance: textfield;
+            -moz-appearance: textfield;
+        }  
+
+        .quantity-input::-webkit-inner-spin-button,
+        .quantity-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+            }
     }
 
 }
