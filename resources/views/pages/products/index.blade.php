@@ -6,7 +6,7 @@
         <div class='product-card'>
             <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
             <p class="product-name">{{ $product->name }}</p>
-            <p><span class="product-price">Cena:</span> {{ $product->unit_price }} / {{ $product->unit }}</p>
+            <p><span class="product-price">{{ __('messages.productPrice') }}:</span> {{ $product->unit_price }} / {{ $product->unit }}</p>
             <form action="#" method="POST">
                 @csrf
 
@@ -28,7 +28,7 @@
                 </div>
 
                 <button type="submit">
-                    Pievienot grozam
+                    {{ __('messages.addToCart') }}
                 </button>
             </form>
         </div>

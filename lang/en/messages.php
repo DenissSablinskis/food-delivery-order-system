@@ -24,5 +24,7 @@ return [
   'toRegistration'=>'Sign up',
   'registered'=>'Already registered?',
   'toLogin'=>'Log in',
+  'productPrice'=>'Price',
+  'addToCart'=>'Add to cart',
 ];
 ?>

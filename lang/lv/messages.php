@@ -24,5 +24,7 @@ return [
     'toRegistration'=>'Reģistrēties',
     'registered'=>'Jau esat reģistrējies?',
     'toLogin'=>'Ieiet',
+    'productPrice'=>'Cena',
+    'addToCart'=>'Pievienot grozam',
 ];
 ?>
