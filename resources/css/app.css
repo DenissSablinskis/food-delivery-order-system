@@ -261,6 +261,10 @@ main {
     @media (min-width: 580px){
         max-width: 900px;
         margin: 0 auto;
+        &.products-main {
+            width: 100%;
+            max-width: 1500px;
+        }
     }
     
     h1 {
@@ -435,70 +439,83 @@ main {
 
     /* Produktu kartiņu stili */
 
-    .product-card {
-        background-color: var(--product-card-bg-color);
-        border: 1px solid var(--product-card-border-color);
-        border-radius: 10px;
-        padding: 10px;
-        height: max-content;
-        width: 100%;
-        max-width: 350px;
-        margin: 20px auto;
-        color: var(--product-card-color);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        &:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
-        }
-        img{
-            max-width: 150px;
-            height: auto;
-            margin: 0 auto;
-        }
-        .product-name,
-        .product-price {
-            font-weight: bold;
-        }
-
-        p, form {
-            margin: 0;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-        button[type="submit"]{
-            width: 70%;
-            height: 40px;
-            margin-top: 8px;
-            border: 0;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: 0.01em;
-            color: #ffffff;
-            cursor: pointer;
-            background: var(--product-card-button-bg);
-            box-shadow: 0 10px 24px rgba(37, 99, 235, 0.28);
-            transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
-            &:hover {
-                transform: translateY(-1px);
-                filter: brightness(1.02);
-                box-shadow: 0 12px 28px rgba(37, 99, 235, 0.34);
-            }
-        }
-        .quantity-input {
-            border: 1px solid var(--product-quantity-input-border-color);
+    .products{
+        .product-card {
+            background-color: var(--product-card-bg-color);
+            border: 1px solid var(--product-card-border-color);
             border-radius: 10px;
-            text-align: center;
-            font-size: 15px;
-            appearance: textfield;
-            -moz-appearance: textfield;
-        }  
-
-        .quantity-input::-webkit-inner-spin-button,
-        .quantity-input::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+            padding: 10px;
+            height: max-content;
+            width: 100%;
+            max-width: 350px;
+            margin: 20px auto;
+            color: var(--product-card-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            &:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
             }
+            img{
+                height: 150px;
+                width: auto;
+                margin: 0 auto;
+            }
+            .product-name,
+            .product-price {
+                font-weight: bold;
+            }
+
+            p, form {
+                margin: 0;
+                text-align: center;
+                font-size: 1.5rem;
+            }
+            button[type="submit"]{
+                width: 70%;
+                height: 40px;
+                margin-top: 8px;
+                border: 0;
+                border-radius: 12px;
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: 0.01em;
+                color: #ffffff;
+                cursor: pointer;
+                background: var(--product-card-button-bg);
+                box-shadow: 0 10px 24px rgba(37, 99, 235, 0.28);
+                transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+                &:hover {
+                    transform: translateY(-1px);
+                    filter: brightness(1.02);
+                    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.34);
+                }
+            }
+            .quantity-input {
+                border: 1px solid var(--product-quantity-input-border-color);
+                border-radius: 10px;
+                text-align: center;
+                font-size: 15px;
+                appearance: textfield;
+                -moz-appearance: textfield;
+            }  
+
+            .quantity-input::-webkit-inner-spin-button,
+            .quantity-input::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+        @media (min-width: 580px) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+         
+        }
+        @media (min-width: 1024px) {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
     }
 
 }

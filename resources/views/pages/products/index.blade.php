@@ -1,37 +1,40 @@
 @extends('layouts.app')
 
+@section('main-class', 'products-main')
+
 @section('content')
+    <div class="products">
+        @foreach($products as $product) 
+            <div class='product-card'>
+                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
+                <p class="product-name">{{ $product->name }}</p>
+                <p><span class="product-price">{{ __('messages.productPrice') }}:</span> {{ $product->unit_price }} / {{ $product->unit }}</p>
+                <form action="#" method="POST">
+                    @csrf
 
-    @foreach($products as $product) 
-        <div class='product-card'>
-            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
-            <p class="product-name">{{ $product->name }}</p>
-            <p><span class="product-price">{{ __('messages.productPrice') }}:</span> {{ $product->unit_price }} / {{ $product->unit }}</p>
-            <form action="#" method="POST">
-                @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <div class="quantity-control">
+                        <button type="button" class="quantity-minus">−</button>
 
-                <div class="quantity-control">
-                    <button type="button" class="quantity-minus">−</button>
+                        <input
+                            type="number"
+                            name="quantity"
+                            value="1"
+                            min="1"
+                            max="{{ $product->stock_quantity }}"
+                            class="quantity-input"
+                        >
 
-                    <input
-                        type="number"
-                        name="quantity"
-                        value="1"
-                        min="1"
-                        max="{{ $product->stock_quantity }}"
-                        class="quantity-input"
-                    >
+                        <button type="button" class="quantity-plus">+</button>
+                    </div>
 
-                    <button type="button" class="quantity-plus">+</button>
-                </div>
-
-                <button type="submit">
-                    {{ __('messages.addToCart') }}
-                </button>
-            </form>
-        </div>
-    @endforeach
+                    <button type="submit">
+                        {{ __('messages.addToCart') }}
+                    </button>
+                </form>
+            </div>
+        @endforeach
+    </div>
 
 @endsection

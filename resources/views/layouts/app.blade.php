@@ -10,7 +10,7 @@
         @include('partials.header')
 
         <!-- Galvenā satura sadaļa -->
-        <main>
+        <main class="@yield('main-class')">
             @yield('content')
         </main>
 
