@@ -1,7 +1,7 @@
 <nav class="nav-links" id="navLinks">
     <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active-link' : '' }}">{{ __('messages.navHome') }}</a>
     <a href="#">{{ __('messages.navProfile') }}</a>
-    <a href="#">{{ __('messages.navProducts') }}</a>
+    <a href="{{ route('products.index') }}" class="{{ request()->routeIs('products.index') ? 'active-link' : '' }}">{{ __('messages.navProducts') }}</a>
     <a href="#" class='cart-link'>
         {{ __('messages.navCart') }}
     </a>

@@ -38,4 +38,4 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 
 // Produktu lapas maršruts
 
-Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
