@@ -1,59 +1,260 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+[[LV]](#latviesu) [[EN]](#english) [[Ekrānšāviņi / Screenshots]](#screenshots)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<a id="latviesu"></a>
 
-## About Laravel
+# Pārtikas piegādes pasūtīšanas sistēma
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Šis ir mācību centra "BUTS" noslēguma projekts. Projekta galvenais mērķis ir parādīt savas profesionālās projektēšanas un programmēšanas prasmes, kas tika pilnveidotas, apgūstot mācību centra kursu. Projektā tika izmantotas gan mācību centrā, gan patstāvīgi iegūtās zināšanas.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Funkcijas
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- 🔐 **Lietotāju autorizācija un reģistrācija** – iespēja reģistrēties un autorizēties, izmantojot e-pastu un paroli.
+- 📦 **Produktu saraksta pārlūkošana** – pieejamo produktu saraksts ir redzams gan reģistrētiem lietotājiem, gan vietnes viesiem.
+- 🌙 **Tēmas izvēle** – lietotājs var ērti pārslēgties starp gaišo un tumšo vizuālo tēmu.
+- 🌐 **Daudzvalodu atbalsts** – sistēmas saskarne ir lokalizēta un pieejama latviešu un angļu valodā.
+- 📱 **Adaptīvs dizains** – saskarne ir optimizēta un ērti lietojama gan datorā, gan planšetdatorā, gan mobilajā tālrunī.
 
-## Learning Laravel
+## Tehnoloģijas
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- PHP
+- Laravel 
+- MySQL 
+- Eloquent ORM 
+- Blade 
+- SCSS
+- JavaScript
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Prasības 
 
-## Laravel Sponsors
+1. PHP 8.2+
+2. Composer
+3. Node.js 20+ un npm
+4. MySQL (vai cita datubāze, kas konfigurēta `.env` failā)
+5. Git
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Installēšana
 
-### Premium Partners
+### 1. Projekta klonēšana
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+git clone https://github.com/DenissSablinskis/food-delivery-order-system.git
+cd food-delivery-order-system
+```
+### 2. Backend atkarību instalēšana
+```bash
+composer install
+```
+### 3. .env faila izveide
+```bash
+cp .env.example .env
+```
 
-## Contributing
+Windows PowerShell vidē:
+```PowerShell
+Copy-Item .env.example .env
+```
+### 4. Lietotnes atslēgas ģenerēšana
+```bash
+php artisan key:generate
+```
+### 5. Datubāzes konfigurēšana
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Atjaunini šādas vērtības .env failā:
+```.env
+DB_CONNECTION
+DB_HOST
+DB_PORT
+DB_DATABASE
+DB_USERNAME
+DB_PASSWORD
+```
 
-## Code of Conduct
+Izveido datubāzi pirms palaist migrācijas.
+### 6. Migrāciju un seederu palaišana
+```bash
+php artisan migrate:fresh --seed
+```
+### 7. Frontend atkarību instalēšana
+```bash
+npm install
+```
+### 8. Frontend resursu izveide
+```bash
+npm run build
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Ja PowerShell bloķē npm komandu, izmanto:
+```PowerShell
+npm.cmd run build
+```
+### 9. Lietotnes palaišana
+```bash
+php artisan serve
+```
+### 10. Atver lietotni pārlūkprogrammā
+```
+http://127.0.0.1:8000
+```
 
-## Security Vulnerabilities
+## Datubāze
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Sistēma sastāv no četriem Eloquent modeļiem.
 
-## License
+- `Lietotājs`
+- `Pasūtījums` 
+- `Pasūtītais produkts`
+- `Produkts`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Relācijas:
+
+```text
+ Lietotājs 1 ──── * Pasūtījums
+ Pasūtījums 1 ──── * Pasūtītais produkts
+ Pasūtītais produkts * ──── 1 Produkts
+```
+
+Šīs relācijas ir definētas Eloquent modeļos:
+
+- `Lietotājs` hasMany `Pasūtījumi`
+- `Pasūtījums` belongsTo `Lietotājs`
+
+- `Pasūtījums` hasMany `Pasūtītie produkti`
+- `Pasūtītais produkts` belongsTo `Pasūtījums`
+
+- `Produkts` hasMany `Pasūtītie produkti`
+- `Pasūtītais produkts` belongsTo `Produkts`
+
+<a id="english"></a>
+
+# Food Delivery Ordering System
+
+This project is the final project for the "BUTS" training center. The main purpose of the project is to show my professional design and programming skills, which were improved during my studies at the "BUTS" training center. In this project, I used knowledge that I got in the training center and learned by myself.
+
+## Features
+
+- 🔐 **User authentication and registration** -  possibility to register and log in using e-mail and password.
+- 📦 **Product list browsing** - the list of products is available for both registered users and guests.
+- 🌙 **Theme switching** - users can switch between light and dark themes.
+- 🌐 **Multilanguage support** - the system is available in Latvian and English.
+- 📱 **Responsive design** - the user interface can be used on computers, tablets, or mobile phones.
+
+## Technologies
+
+- PHP
+- Laravel 
+- MySQL 
+- Eloquent ORM 
+- Blade 
+- SCSS
+- JavaScript
+
+## Requirements
+
+1. PHP 8.2+
+2. Composer
+3. Node.js 20+ and npm
+4. MySQL (or another database configured in the `.env` file)
+5. Git
+
+## Installation
+
+### 1. Clone the repository
+
+```bash 
+git clone https://github.com/DenissSablinskis/food-delivery-order-system.git
+cd food-delivery-order-system
+```
+### 2. Install PHP dependencies
+```bash
+composer install
+```
+### 3. Create the enviromental file
+```bash
+cp .env.example .env
+```
+Windows PowerShell:
+```PowerShell
+Copy-Item .env.example .env
+```
+### 4. Generate the application key
+```bash
+php artisan key:generate
+```
+### 5. Configure the database
+
+Update the database settings in the `.env` file:
+
+```.env
+DB_CONNECTION
+DB_HOST
+DB_PORT
+DB_DATABASE
+DB_USERNAME
+DB_PASSWORD
+```
+
+Create the database before running migrations.
+### 6. Run migrations and seeders
+```bash
+php artisan migrate:fresh --seed
+```
+### 7. Install frontend dependencies
+```bash
+npm install
+```
+### 8. Build frontend assets
+```bash
+npm run build
+```
+If PowerShell blocks the npm command, use:
+```PowerShell
+npm.cmd run build
+```
+### 9. Run the application
+```bash
+php artisan serve
+```
+### 10. Open in browser
+```
+http://127.0.0.1:8000
+```
+
+## Database
+
+The application contains four Eloquent models:
+
+- `User`
+- `Order` 
+- `OrderedProduct`
+- `Product`
+
+Relationship: 
+ 
+```text
+ User 1 ──── * Order
+ Order 1 ──── * Ordered product
+ Ordered product * ──── 1 Product
+```
+
+These relationships are defined in the Eloquent models:
+
+- `User` hasMany `Orders`
+- `Order` belongsTo `User`
+
+- `Order` hasMany `Ordered products`
+- `Ordered product` belongsTo `Order`
+
+- `Product` hasMany `Ordered products`
+- `Ordered product` belongsTo `Product`
+
+
+<a id="screenshots"></a>
+
+## Ekrānšāviņi / Screenshots
+
+![login](screenshots/login.png)
+![register](screenshots/register.png)
+![products](screenshots/products.png)
+![login-mobile](screenshots/login-mobile.png)
+![register-mobile](screenshots/register-mobile.png)
+![products-mobile](screenshots/products-mobile.png)
