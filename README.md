@@ -8,7 +8,7 @@
 
 ## Funkcijas
 
-- 🔐 **Lietotāju autorizācija un reģistrācija** – iespēja reģistrēties un autorizēties, izmantojot e-pastu un paroli.
+- 🔐 **Lietotāju autentifikācija un reģistrācija** – iespēja reģistrēties un autentificeties, izmantojot e-pastu un paroli.
 - 📦 **Produktu saraksta pārlūkošana** – pieejamo produktu saraksts ir redzams gan reģistrētiem lietotājiem, gan vietnes viesiem.
 - 🌙 **Tēmas izvēle** – lietotājs var ērti pārslēgties starp gaišo un tumšo vizuālo tēmu.
 - 🌐 **Daudzvalodu atbalsts** – sistēmas saskarne ir lokalizēta un pieejama latviešu un angļu valodā.
@@ -123,6 +123,13 @@ Relācijas:
 
 - `Produkts` hasMany `Pasūtītie produkti`
 - `Pasūtītais produkts` belongsTo `Produkts`
+
+## Demonstrācijas konts
+
+Lai pārbaudītu autentifikāciju, var izmantot iepriekš izveidoto testa lietotāju:
+
+- **E-pasts:** sofija.berzina@gaisma.lv
+- **Parole:** sofija1234
 
 <a id="english"></a>
 
@@ -246,6 +253,13 @@ These relationships are defined in the Eloquent models:
 
 - `Product` hasMany `Ordered products`
 - `Ordered product` belongsTo `Product`
+
+## Demo Account
+
+To test the authentication, you can use the following pre-created test account:
+
+- **Email:** sofija.berzina@gaisma.lv
+- **Password:** sofija1234
 
 
 <a id="screenshots"></a>
