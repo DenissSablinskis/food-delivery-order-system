@@ -39,3 +39,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 // Produktu lapas maršruts
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+// Groza lapas maršruts
+
+Route::get('/cart', function () {
+    return view('pages.cart.index');
+});
