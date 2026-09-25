@@ -11,4 +11,10 @@ class ProductController extends Controller
         $products = Product::all();
         return view('pages.products.index', compact('products'));
     }
+    
+     public function cart()
+    {
+        $products = Product::all();
+        return view('pages.cart.index', compact('products'));
+    }
 }

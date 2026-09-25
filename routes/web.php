@@ -42,6 +42,4 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 
 // Groza lapas maršruts
 
-Route::get('/cart', function () {
-    return view('pages.cart.index');
-});
+Route::get('/cart', [ProductController::class, 'cart'])->name('cart.index');
