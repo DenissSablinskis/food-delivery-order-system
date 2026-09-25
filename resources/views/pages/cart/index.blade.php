@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('main-class', 'cart-main')
+
 @section('content')
     <script>
         const products = @json($products);

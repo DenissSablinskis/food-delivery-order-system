@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import CartItem from './components/CartItem';
 import { useState } from 'react';
+import styles from './cart.module.css';
 
 function App() {
     const [cart, setCart] = useState(
@@ -32,11 +33,13 @@ function App() {
     }
 
     return (
-        <div>
-            <h1>Cart</h1>
-            {cart.map(product => (
-                <CartItem key={product.id} product={product} updateQuantity={updateQuantity} removeFromCart={removeFromCart}/>
-            ))}
+        <div className={styles.cart}>
+            <h1 className={styles.title}>Cart</h1>
+            <div className={styles.items}>
+                {cart.map(product => (
+                    <CartItem key={product.id} product={product} updateQuantity={updateQuantity} removeFromCart={removeFromCart}/>
+                ))}
+            </div>
         </div>
     );
 }

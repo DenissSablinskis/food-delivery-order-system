@@ -1,33 +1,45 @@
+import styles from '../cart.module.css';
+
 function CartItem({ product, updateQuantity, removeFromCart }) {
     return (
-        <div>
-            <h3>{product.name}</h3>
-            <p>€{product.price}</p>
+        <article className={styles.item}>
+            <div className={styles.itemInfo}>
+                <h3>{product.name}</h3>
+                <p className={styles.price}>€{product.price}</p>
+            </div>
 
-            <button
-                onClick={() => {
-                    if (product.quantity > 1) {
-                        updateQuantity(product.id, product.quantity - 1);
-                    }
-                }}
-            >
-                -
-            </button>
+            <div className={styles.controls}>
+                <button
+                    type="button"
+                    className={styles.button}
+                    onClick={() => {
+                        if (product.quantity > 1) {
+                            updateQuantity(product.id, product.quantity - 1);
+                        }
+                    }}
+                >
+                    −
+                </button>
 
-            <span>{product.quantity}</span>
+                <span className={styles.quantity}>{product.quantity}</span>
 
-            <button
-                onClick={() => updateQuantity(product.id, product.quantity + 1)}
-            >
-                +
-            </button>
+                <button
+                    type="button"
+                    className={styles.button}
+                    onClick={() => updateQuantity(product.id, product.quantity + 1)}
+                >
+                    +
+                </button>
 
-            <button
-                onClick={() => removeFromCart(product.id)}
-            >
-                x
-            </button>
-        </div>
+                <button
+                    type="button"
+                    className={`${styles.button} ${styles.removeButton}`}
+                    onClick={() => removeFromCart(product.id)}
+                >
+                    ×
+                </button>
+            </div>
+        </article>
     );
 }
 

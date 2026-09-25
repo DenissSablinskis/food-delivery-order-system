@@ -1,0 +1,88 @@
+.cart {
+    width: min(100% - 64px, 1200px);
+    margin: 48px auto;
+    color: #1f2937;
+}
+
+.title { margin: 0 0 20px; font-size: 1.75rem; font-weight: 700; }
+
+.items {
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 24px;
+}
+
+.item + .item {
+    border-top: 1px solid #e5e7eb;
+}
+
+.itemInfo h3,
+.price { margin: 0; }
+
+.itemInfo h3 { font-size: 1.05rem; }
+.price { margin-top: 4px; color: #4b5563; font-weight: 600; }
+.controls { display: flex; align-items: center; gap: 8px; }
+.quantity { min-width: 24px; text-align: center; font-weight: 600; }
+
+.button {
+    min-width: 32px;
+    min-height: 32px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #f9fafb;
+    color: #374151;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.button:hover { border-color: #9ca3af; background: #f3f4f6; }
+.removeButton { margin-left: 8px; border-color: #fecaca; background: #fff7f7; color: #b91c1c; }
+.removeButton:hover { border-color: #fca5a5; background: #fee2e2; }
+
+:global([data-theme="dark"]) .cart { color: #f3f4f6; }
+
+:global(.cart-main) {
+    width: 100%;
+    max-width: 1400px;
+}
+
+:global([data-theme="dark"]) .items {
+    border-color: #374151;
+    background: #1f2937;
+    box-shadow: none;
+}
+
+:global([data-theme="dark"]) .item + .item { border-color: #374151; }
+
+:global([data-theme="dark"]) .price { color: #d1d5db; }
+
+:global([data-theme="dark"]) .button {
+    border-color: #4b5563;
+    background: #111827;
+    color: #f3f4f6;
+}
+
+:global([data-theme="dark"]) .button:hover { border-color: #6b7280; background: #374151; }
+:global([data-theme="dark"]) .removeButton { border-color: #7f1d1d; background: #2b1518; color: #fca5a5; }
+
+@media (max-width: 520px) {
+    .cart {
+        width: min(100% - 32px, 1200px);
+        margin: 32px auto;
+    }
+
+    .item { align-items: flex-start; flex-direction: column; }
+    .controls { width: 100%; }
+    .removeButton { margin-left: auto; }
+}
