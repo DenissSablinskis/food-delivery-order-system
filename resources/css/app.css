@@ -205,6 +205,14 @@ header {
             display: block;
             margin-right: 20px;
         }
+        color: var(--color);
+        font-size: 1.35rem;
+        line-height: 1;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: #3b82f6;
+        }
     }
     
     .langAndTheme {
@@ -224,7 +232,7 @@ header {
                 padding: 0;
             }
             .lang-divider{
-                color: #000000;
+                color: var(--color);
                 font-size: 16px;
                 line-height: 1;
             }
