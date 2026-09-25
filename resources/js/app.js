@@ -92,3 +92,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Pievienot grozam ar izvēlēto daudzumu
+
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+
+        const form = button.closest('form'); // Atrod tuvāko formu, kurā atrodas poga
+        const quantityInput = form.querySelector('.quantity-input'); // Iegūst daudzuma ievades lauku šajā formā
+        
+
+        const product = {
+            id: button.dataset.id,
+            name: button.dataset.name,
+            price: button.dataset.price,
+            quantity: Number(quantityInput.value)
+        };
+
+        // Iegūst esošo grozu no localStorage vai izveido jaunu, ja tas vēl neeksistē
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Pārbauda, vai produkts jau ir grozā
+        const existingProduct = cart.find(item => item.id === product.id);
+
+        if (existingProduct) {
+            existingProduct.quantity += product.quantity;
+        } else {
+            cart.push(product);
+        }
+        
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+    });
+});

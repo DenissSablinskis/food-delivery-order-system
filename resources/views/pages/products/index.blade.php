@@ -29,7 +29,13 @@
                         <button type="button" class="quantity-plus">+</button>
                     </div>
 
-                    <button type="submit">
+                    <button
+                        type="button"
+                        class="add-to-cart"
+                        data-id="{{ $product->id }}"
+                        data-name="{{ $product->name }}"
+                        data-price="{{ $product->unit_price }}"
+                    >
                         {{ __('messages.addToCart') }}
                     </button>
                 </form>

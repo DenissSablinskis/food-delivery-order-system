@@ -1,11 +1,8 @@
-function CartItem() {
+function CartItem({product}) {
     return (
         <div>
-            <h3>Product name</h3>
-            <p>€5.00</p>
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
+            <h3>{product.name}</h3>
+            <p>€{product.price}</p>
         </div>
     );
 }
