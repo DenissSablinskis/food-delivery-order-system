@@ -478,7 +478,7 @@ main {
                 text-align: center;
                 font-size: 1.5rem;
             }
-            button[type="submit"]{
+            .add-to-cart {
                 width: 70%;
                 height: 40px;
                 margin-top: 8px;
