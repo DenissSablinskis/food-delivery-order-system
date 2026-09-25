@@ -14,7 +14,7 @@ function CartItem({ product, updateQuantity, removeFromCart }) {
                     className={styles.button}
                     onClick={() => {
                         if (product.quantity > 1) {
-                            updateQuantity(product.id, product.quantity - 1);
+                            updateQuantity(product.id, product.quantity - 1); // Samazina daudzumu par 1, ja tas ir lielāks par 1
                         }
                     }}
                 >
@@ -26,7 +26,7 @@ function CartItem({ product, updateQuantity, removeFromCart }) {
                 <button
                     type="button"
                     className={styles.button}
-                    onClick={() => updateQuantity(product.id, product.quantity + 1)}
+                    onClick={() => updateQuantity(product.id, product.quantity + 1)} // Palielina daudzumu par 1
                 >
                     +
                 </button>
@@ -34,7 +34,7 @@ function CartItem({ product, updateQuantity, removeFromCart }) {
                 <button
                     type="button"
                     className={`${styles.button} ${styles.removeButton}`}
-                    onClick={() => removeFromCart(product.id)}
+                    onClick={() => removeFromCart(product.id)} // Noņem produktu no groza
                 >
                     ×
                 </button>

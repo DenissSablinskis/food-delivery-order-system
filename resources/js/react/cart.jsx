@@ -10,6 +10,7 @@ function App() {
 
     function updateQuantity(id, quantity) {
         setCart(prevCart => {
+            // Atjaunina produkta daudzumu grozā, ja tas atrodas, un saglabā izmaiņas localStorage
             const updatedCart = prevCart.map(item =>
                 item.id === id
                     ? { ...item, quantity: quantity }
@@ -24,6 +25,7 @@ function App() {
 
     function removeFromCart(id) {
         setCart(prevCart => {
+            // Noņem produktu no groza un saglabā izmaiņas localStorage
             const updatedCart = prevCart.filter(item => item.id !== id);
 
             localStorage.setItem('cart', JSON.stringify(updatedCart));
@@ -32,6 +34,11 @@ function App() {
         });
     }
 
+    // Aprēķina kopējo cenu grozā
+    const total = cart.reduce(
+        (sum, item) => sum + Number(item.price) * item.quantity, 0
+    );
+
     return (
         <div className={styles.cart}>
             <h1 className={styles.title}>Cart</h1>
@@ -39,6 +46,10 @@ function App() {
                 {cart.map(product => (
                     <CartItem key={product.id} product={product} updateQuantity={updateQuantity} removeFromCart={removeFromCart}/>
                 ))}
+            </div>
+            <div className={styles.total}>
+                <span>Total:</span>
+                <span>€{total.toFixed(2)}</span>
             </div>
         </div>
     );

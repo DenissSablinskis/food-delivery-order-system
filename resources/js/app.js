@@ -93,6 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// ----------------GROZA POGAS------------------------------
+
 // Pievienot grozam ar izvēlēto daudzumu
 
 const addToCartButtons = document.querySelectorAll('.add-to-cart');

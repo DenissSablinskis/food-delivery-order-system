@@ -6,6 +6,25 @@
 
 .title { margin: 0 0 20px; font-size: 1.75rem; font-weight: 700; }
 
+.total {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 18px 24px;
+    border: 1px solid #bfdbfe;
+    border-radius: 12px;
+    background: #eff6ff;
+    color: #1e3a5f;
+    font-size: 1.05rem;
+}
+
+.total span:last-child {
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
 .items {
     overflow: hidden;
     border: 1px solid #e5e7eb;
@@ -61,6 +80,12 @@
     border-color: #374151;
     background: #1f2937;
     box-shadow: none;
+}
+
+:global([data-theme="dark"]) .total {
+    border-color: #1e40af;
+    background: #172554;
+    color: #dbeafe;
 }
 
 :global([data-theme="dark"]) .item + .item { border-color: #374151; }
