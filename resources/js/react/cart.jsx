@@ -8,24 +8,34 @@ function App() {
     );
 
     function updateQuantity(id, quantity) {
-    setCart(prevCart => {
-        const updatedCart = prevCart.map(item =>
-            item.id === id
-                ? { ...item, quantity: quantity }
-                : item
-        );
+        setCart(prevCart => {
+            const updatedCart = prevCart.map(item =>
+                item.id === id
+                    ? { ...item, quantity: quantity }
+                    : item
+            );
 
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
 
-        return updatedCart;
-    });
-}
+            return updatedCart;
+        });
+    }
+
+    function removeFromCart(id) {
+        setCart(prevCart => {
+            const updatedCart = prevCart.filter(item => item.id !== id);
+
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+            return updatedCart;
+        });
+    }
 
     return (
         <div>
             <h1>Cart</h1>
             {cart.map(product => (
-                <CartItem key={product.id} product={product} updateQuantity={updateQuantity}/>
+                <CartItem key={product.id} product={product} updateQuantity={updateQuantity} removeFromCart={removeFromCart}/>
             ))}
         </div>
     );

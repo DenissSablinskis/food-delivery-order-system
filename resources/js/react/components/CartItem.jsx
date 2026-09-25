@@ -1,4 +1,4 @@
-function CartItem({ product, updateQuantity }) {
+function CartItem({ product, updateQuantity, removeFromCart }) {
     return (
         <div>
             <h3>{product.name}</h3>
@@ -20,6 +20,12 @@ function CartItem({ product, updateQuantity }) {
                 onClick={() => updateQuantity(product.id, product.quantity + 1)}
             >
                 +
+            </button>
+
+            <button
+                onClick={() => removeFromCart(product.id)}
+            >
+                x
             </button>
         </div>
     );
