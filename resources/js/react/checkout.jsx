@@ -1,9 +1,10 @@
 import { createRoot } from 'react-dom/client';
 import { useState } from 'react';
+import { getCartKey } from '../cart';
 
 function Checkout() {
     const [cart] = useState(
-        JSON.parse(localStorage.getItem('cart')) || []
+        JSON.parse(localStorage.getItem(getCartKey())) || []
     );
     const [address, setAddress] = useState(user.address || '');
 

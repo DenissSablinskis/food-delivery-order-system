@@ -2,11 +2,11 @@ import { createRoot } from 'react-dom/client';
 import CartItem from './components/CartItem';
 import { useState } from 'react';
 import styles from './cart.module.css';
-import {updateCartCount} from '../cart';
+import {updateCartCount, getCartKey} from '../cart';
 
 function App() {
     const [cart, setCart] = useState(
-        JSON.parse(localStorage.getItem('cart')) || []
+        JSON.parse(localStorage.getItem(getCartKey())) || []
     );
 
     function updateQuantity(id, quantity) {
@@ -18,7 +18,7 @@ function App() {
                     : item
             );
 
-            localStorage.setItem('cart', JSON.stringify(updatedCart));
+            localStorage.setItem(getCartKey(), JSON.stringify(updatedCart));
             updateCartCount(); // Atjaunina groza pogas skaitītāju pēc daudzuma izmaiņām
 
             return updatedCart;
@@ -30,7 +30,7 @@ function App() {
             // Noņem produktu no groza un saglabā izmaiņas localStorage
             const updatedCart = prevCart.filter(item => item.id !== id);
 
-            localStorage.setItem('cart', JSON.stringify(updatedCart));
+            localStorage.setItem(getCartKey(), JSON.stringify(updatedCart));
             updateCartCount();
 
             return updatedCart;

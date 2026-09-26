@@ -1,5 +1,5 @@
 import './bootstrap';
-import { updateCartCount } from './cart';
+import { updateCartCount,getCartKey } from './cart';
 
 updateCartCount(); // Atjaunina groza pogas skaitītāju, kad lapa tiek ielādēta
 
@@ -117,7 +117,7 @@ addToCartButtons.forEach(button => {
         };
 
         // Iegūst esošo grozu no localStorage vai izveido jaunu, ja tas vēl neeksistē
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cart = JSON.parse(localStorage.getItem(getCartKey())) || [];
 
         // Pārbauda, vai produkts jau ir grozā
         const existingProduct = cart.find(item => item.id === product.id);
@@ -129,7 +129,7 @@ addToCartButtons.forEach(button => {
         }
         
 
-        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem(getCartKey(), JSON.stringify(cart));
         updateCartCount();
     });
 });
