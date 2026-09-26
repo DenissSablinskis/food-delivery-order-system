@@ -28,7 +28,6 @@ return [
     'addToCart'=>'Pievienot grozam',
     'cartTitle' => 'Iepirkumu grozs',
     'cartEmpty' => 'Jūsu grozs ir tukšs.',
-    'cartQuantity' => 'Daudzums',
     'cartTotal' => 'Kopā',
 ];
 ?>
