@@ -4,7 +4,13 @@
 
 @section('content')
     <script>
-        const products = @json($products);
+        // Saņemt tulkojumus no Laravel un parveidot tos par JavaScript objektu
+        const translations = {
+            cartTitle: @json(__('messages.cartTitle')),
+            cartEmpty: @json(__('messages.cartEmpty')),
+            cartQuantity: @json(__('messages.cartQuantity')),
+            cartTotal: @json(__('messages.cartTotal')),
+        };
     </script>
     
     <div id="app"></div>

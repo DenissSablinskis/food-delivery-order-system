@@ -35,10 +35,10 @@
 
 .item {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 22px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 16px 20px;
 }
 
 .item + .item {
@@ -48,14 +48,26 @@
 .itemInfo h3,
 .price { margin: 0; }
 
-.itemInfo h3 { font-size: 1.05rem; }
+.itemInfo h3 { font-size: 1rem; }
 .price { margin-top: 4px; color: #4b5563; font-weight: 600; }
-.controls { display: flex; align-items: center; gap: 8px; }
-.quantity { min-width: 24px; text-align: center; font-weight: 600; }
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.controls p {
+    margin: 0;
+    font-weight: 600;
+}
+
+.quantity { min-width: 18px; text-align: center; font-weight: 600; }
 
 .button {
     min-width: 32px;
     min-height: 32px;
+    padding: 0 8px;
     border: 1px solid #d1d5db;
     border-radius: 6px;
     background: #f9fafb;
@@ -66,7 +78,7 @@
 }
 
 .button:hover { border-color: #9ca3af; background: #f3f4f6; }
-.removeButton { margin-left: 8px; border-color: #fecaca; background: #fff7f7; color: #b91c1c; }
+.removeButton { margin-left: 2px; border-color: #fecaca; background: #fff7f7; color: #b91c1c; }
 .removeButton:hover { border-color: #fca5a5; background: #fee2e2; }
 
 :global([data-theme="dark"]) .cart { color: #f3f4f6; }
@@ -107,7 +119,6 @@
         margin: 32px auto;
     }
 
-    .item { align-items: flex-start; flex-direction: column; }
     .controls { width: 100%; }
     .removeButton { margin-left: auto; }
 }

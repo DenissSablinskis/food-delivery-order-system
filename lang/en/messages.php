@@ -26,5 +26,9 @@ return [
   'toLogin'=>'Log in',
   'productPrice'=>'Price',
   'addToCart'=>'Add to cart',
+  'cartTitle' => 'Shopping cart',
+  'cartEmpty' => 'Your cart is empty.',
+  'cartQuantity' => 'Quantity',
+  'cartTotal' => 'Total',
 ];
 ?>

@@ -8,7 +8,9 @@ function CartItem({ product, updateQuantity, removeFromCart }) {
                 <p className={styles.price}>€{product.price}</p>
             </div>
 
+
             <div className={styles.controls}>
+                <p>{translations.cartQuantity}</p>
                 <button
                     type="button"
                     className={styles.button}
@@ -21,7 +23,9 @@ function CartItem({ product, updateQuantity, removeFromCart }) {
                     −
                 </button>
 
-                <span className={styles.quantity}>{product.quantity}</span>
+                <span className={styles.quantity}>
+                    {product.quantity}
+                </span>
 
                 <button
                     type="button"

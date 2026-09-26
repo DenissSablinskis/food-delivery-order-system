@@ -41,14 +41,23 @@ function App() {
 
     return (
         <div className={styles.cart}>
-            <h1 className={styles.title}>Cart</h1>
+            <h1 className={styles.title}>{translations.cartTitle}</h1>
             <div className={styles.items}>
-                {cart.map(product => (
-                    <CartItem key={product.id} product={product} updateQuantity={updateQuantity} removeFromCart={removeFromCart}/>
-                ))}
+                {cart.length === 0 ? (
+                    <p>{translations.cartEmpty}</p> // Ja grozs ir tukšs, tiek parādīts paziņojums
+                ) : (
+                    cart.map(product => (
+                        <CartItem
+                            key={product.id}
+                            product={product}
+                            updateQuantity={updateQuantity}
+                            removeFromCart={removeFromCart}
+                        />
+                    ))
+                )}
             </div>
             <div className={styles.total}>
-                <span>Total:</span>
+                <span>{translations.cartTotal}:</span>
                 <span>€{total.toFixed(2)}</span>
             </div>
         </div>
