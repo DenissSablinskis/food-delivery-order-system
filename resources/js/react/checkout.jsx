@@ -5,6 +5,7 @@ function Checkout() {
     const [cart] = useState(
         JSON.parse(localStorage.getItem('cart')) || []
     );
+    const [address, setAddress] = useState(user.address || '');
 
     const total = cart.reduce(
         (sum, item) => sum + Number(item.price) * item.quantity,0
@@ -13,7 +14,16 @@ function Checkout() {
     return (
         <div>
             <h1>Checkout</h1>
-
+            <p>Username: {user.username}</p>
+            <p>Email: {user.email}</p>
+            <label>
+                Address:
+                <input
+                    type="text"
+                    value={address}
+                    onChange={event => setAddress(event.target.value)}
+                />
+            </label>
             {cart.map(product => (
                 <div key={product.id}>
                     <h3>{product.name}</h3>
