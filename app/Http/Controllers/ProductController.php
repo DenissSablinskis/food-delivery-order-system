@@ -12,9 +12,11 @@ class ProductController extends Controller
         return view('pages.products.index', compact('products'));
     }
     
-     public function cart()
-    {
-        $products = Product::all();
-        return view('pages.cart.index', compact('products'));
+    public function cart(){
+        return view('pages.cart.index');
+    }
+
+    public function checkout(){
+        return view('pages.checkout.index');
     }
 }

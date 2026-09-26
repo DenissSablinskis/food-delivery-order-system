@@ -43,3 +43,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 // Groza lapas maršruts
 
 Route::get('/cart', [ProductController::class, 'cart'])->name('cart.index');
+
+// Checkout lapas maršruts
+
+Route::get('/checkout', [ProductController::class, 'checkout'])->name('checkout.index');
