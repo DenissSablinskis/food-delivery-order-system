@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 import CartItem from './components/CartItem';
 import { useState } from 'react';
 import styles from './cart.module.css';
+import {updateCartCount} from '../cart';
 
 function App() {
     const [cart, setCart] = useState(
@@ -18,6 +19,7 @@ function App() {
             );
 
             localStorage.setItem('cart', JSON.stringify(updatedCart));
+            updateCartCount(); // Atjaunina groza pogas skaitītāju pēc daudzuma izmaiņām
 
             return updatedCart;
         });
@@ -29,6 +31,7 @@ function App() {
             const updatedCart = prevCart.filter(item => item.id !== id);
 
             localStorage.setItem('cart', JSON.stringify(updatedCart));
+            updateCartCount();
 
             return updatedCart;
         });

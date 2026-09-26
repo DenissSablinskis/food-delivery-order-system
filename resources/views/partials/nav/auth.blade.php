@@ -4,6 +4,7 @@
     <a href="{{ route('products.index') }}" class="{{ request()->routeIs('products.index') ? 'active-link' : '' }}">{{ __('messages.navProducts') }}</a>
     <a href="{{ route('cart.index') }}" class='cart-link'>
         {{ __('messages.navCart') }}
+        <span class="cart-count">0</span>
     </a>
     <form method='post' action="{{ route('logout') }}">
         @csrf
@@ -13,4 +14,5 @@
 
 <a href="{{ route('cart.index') }}" class='cart-icon-link'>
     <i class='bi bi-cart'></i>
+    <span class="cart-count">0</span>
 </a>

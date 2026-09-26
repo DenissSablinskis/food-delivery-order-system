@@ -1,4 +1,7 @@
 import './bootstrap';
+import { updateCartCount } from './cart';
+
+updateCartCount(); // Atjaunina groza pogas skaitītāju, kad lapa tiek ielādēta
 
 // ----------------BURGERA IZVĒLNE----------------------
 
@@ -127,5 +130,6 @@ addToCartButtons.forEach(button => {
         
 
         localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
     });
 });
