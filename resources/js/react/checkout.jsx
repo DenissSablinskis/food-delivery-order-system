@@ -26,6 +26,7 @@ function Checkout() {
 
         if (response.ok) {
             localStorage.removeItem(getCartKey());
+            window.location.href = `/orders/${data.id}`; // Pāradresē uz pasūtījuma detaļu lapu
         }
     }
 

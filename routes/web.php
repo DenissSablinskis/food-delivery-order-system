@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Models\Order;
 
 Route::get('/', function () {
     return view('pages.home');
@@ -49,3 +50,9 @@ Route::get('/cart', [ProductController::class, 'cart'])->name('cart.index');
 Route::get('/checkout', [ProductController::class, 'checkout'])->name('checkout.index');
 
 Route::post('/checkout', [ProductController::class, 'createOrder'])->middleware('auth')->name('checkout.store');
+
+// Pasūtījumu apskates maršruts
+
+Route::get('/orders/{order}', function (Order $order) {
+    return view('pages.orders.show', compact('order'));
+})->middleware('auth');
