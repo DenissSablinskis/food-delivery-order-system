@@ -22,10 +22,12 @@ function Checkout() {
             }),
         });
 
-    const data = await response.json();
+        const data = await response.json();
 
-    console.log(data);
-}
+        if (response.ok) {
+            localStorage.removeItem(getCartKey());
+        }
+    }
 
     const total = cart.reduce(
         (sum, item) => sum + Number(item.price) * item.quantity,0
