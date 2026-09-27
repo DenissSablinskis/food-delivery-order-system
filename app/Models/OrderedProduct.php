@@ -9,6 +9,7 @@ class OrderedProduct extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'order_id',
         'product_id',
         'product_count',
         'unit_price_at_purchase',

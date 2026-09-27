@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Order;
+use App\Models\OrderedProduct;
 
 class ProductController extends Controller
 {
@@ -18,5 +20,25 @@ class ProductController extends Controller
 
     public function checkout(){
         return view('pages.checkout.index');
+    }
+    public function createOrder(Request $request)
+    {
+        $order = Order::create([
+        'user_id' => auth()->id(),
+        'status' => 'New',
+        ]);
+
+        foreach ($request->cart as $item) {
+            $product = Product::findOrFail($item['id']); // Pārbauda, vai produkts pastāv
+
+            OrderedProduct::create([
+                'order_id' => $order->id,
+                'product_id' => $product->id,
+                'product_count' => $item['quantity'],
+                'unit_price_at_purchase' => $product->unit_price,
+            ]);
+        }
+
+        return response()->json($order);
     }
 }

@@ -8,6 +8,25 @@ function Checkout() {
     );
     const [address, setAddress] = useState(user.address || '');
 
+    async function handleSubmit() {
+        const response = await fetch('/checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify({
+                cart,
+                address,
+            }),
+        });
+
+    const data = await response.json();
+
+    console.log(data);
+}
+
     const total = cart.reduce(
         (sum, item) => sum + Number(item.price) * item.quantity,0
     );
@@ -33,6 +52,9 @@ function Checkout() {
                 </div>
             ))}
             <h2>Total: €{total.toFixed(2)}</h2>
+            <button type="button" onClick={handleSubmit}>
+                Confirm order
+            </button>
         </div>
     );
 }

@@ -44,6 +44,8 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 
 Route::get('/cart', [ProductController::class, 'cart'])->name('cart.index');
 
-// Checkout lapas maršruts
+// Checkout lapas maršruti
 
 Route::get('/checkout', [ProductController::class, 'checkout'])->name('checkout.index');
+
+Route::post('/checkout', [ProductController::class, 'createOrder'])->middleware('auth')->name('checkout.store');
