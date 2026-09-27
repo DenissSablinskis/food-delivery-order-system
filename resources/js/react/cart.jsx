@@ -63,6 +63,11 @@ function App() {
                 <span>{translations.cartTotal}:</span>
                 <span>€{total.toFixed(2)}</span>
             </div>
+            {cart.length > 0 && (
+                <a href="/checkout">
+                    Proceed to checkout
+                </a>
+            )}
         </div>
     );
 }
