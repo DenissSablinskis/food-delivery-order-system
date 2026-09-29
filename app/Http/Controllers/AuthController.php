@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
+use App\Http\Requests\LoginRequest;
 
 class AuthController extends Controller
 {
@@ -20,12 +21,9 @@ class AuthController extends Controller
      * Valide ievadītos datus, veic autorizāciju,
      * atjauno sessijas identifikatoru, paradrese lietotaju
      */
-    public function login(Request $request): RedirectResponse
+    public function login(LoginRequest $request): RedirectResponse
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $credentials = $request->validated();
 
         $remember = $request->boolean('remember');
 
