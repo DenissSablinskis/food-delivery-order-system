@@ -64,7 +64,7 @@ function App() {
                 <span>€{total.toFixed(2)}</span>
             </div>
             {cart.length > 0 && (
-                <a href="/checkout">
+                <a className={styles.checkoutButton} href="/checkout">
                     Proceed to checkout
                 </a>
             )}
