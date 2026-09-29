@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
 {
@@ -48,12 +49,8 @@ class AuthController extends Controller
      * Pārbauda ievadītos datus, pievieno jaunu lietotāju,
      * autorizē lietotāju un atgriež sākumlapā.
      */
-    public function register(Request $request): RedirectResponse{
-        $data = $request->validate([
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8', 'confirmed'],
-        ]);
+    public function register(RegisterRequest $request): RedirectResponse{
+        $data = $request->validated();
 
         $user = User::create([
             'username' => $data['username'],
