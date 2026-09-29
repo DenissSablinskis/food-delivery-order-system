@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderedProduct;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CreateOrderRequest;
 
 class ProductController extends Controller
 {
@@ -23,7 +24,7 @@ class ProductController extends Controller
         return view('pages.checkout.index');
     }
 
-    public function createOrder(Request $request){
+    public function createOrder(CreateOrderRequest $request){
 
         return DB::transaction(function () use ($request) {
 
