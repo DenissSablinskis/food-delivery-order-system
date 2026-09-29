@@ -21,8 +21,14 @@ class ProductController extends Controller
     public function checkout(){
         return view('pages.checkout.index');
     }
-    public function createOrder(Request $request)
-    {
+
+    public function createOrder(Request $request){
+        $user = auth()->user();
+
+        $user->update([
+            'address' => $request->address, // Aizpilda lietotāja adresi, ja tā nav norādīta
+        ]);
+
         $order = Order::create([
         'user_id' => auth()->id(),
         'status' => 'New',
