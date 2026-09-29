@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderedProduct;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -23,29 +24,46 @@ class ProductController extends Controller
     }
 
     public function createOrder(Request $request){
-        $user = auth()->user();
 
-        $user->update([
-            'address' => $request->address, // Aizpilda lietotāja adresi, ja tā nav norādīta
-        ]);
+        return DB::transaction(function () use ($request) {
 
-        $order = Order::create([
-        'user_id' => auth()->id(),
-        'delivery_address' => $request->address,
-        'status' => 'New',
-        ]);
+            $user = auth()->user();
 
-        foreach ($request->cart as $item) {
-            $product = Product::findOrFail($item['id']); // Pārbauda, vai produkts pastāv
+            // Pārbauda, vai visiem produktiem ir pietiekami krājumi
+            foreach ($request->cart as $item) {
+                $product = Product::findOrFail($item['id']);
 
-            OrderedProduct::create([
-                'order_id' => $order->id,
-                'product_id' => $product->id,
-                'product_count' => $item['quantity'],
-                'unit_price_at_purchase' => $product->unit_price,
+                if ($item['quantity'] > $product->stock_quantity) {
+                    return response()->json([
+                        'message' => "Not enough stock for {$product->name}."
+                    ], 422);
+                }
+            }
+
+            $user->update([
+                'address' => $request->address, // Aizpilda lietotāja adresi, ja tā nav norādīta
             ]);
-        }
 
-        return response()->json($order);
+            $order = Order::create([
+                'user_id' => auth()->id(),
+                'delivery_address' => $request->address,
+                'status' => 'New',
+            ]);
+
+            foreach ($request->cart as $item) {
+                $product = Product::findOrFail($item['id']); // Pārbauda, vai produkts pastāv
+
+                OrderedProduct::create([
+                    'order_id' => $order->id,
+                    'product_id' => $product->id,
+                    'product_count' => $item['quantity'],
+                    'unit_price_at_purchase' => $product->unit_price,
+                ]);
+
+                $product->decrement('stock_quantity', $item['quantity']);
+            }
+
+            return response()->json($order);
+        });
     }
 }
