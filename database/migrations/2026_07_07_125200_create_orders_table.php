@@ -18,6 +18,8 @@ return new class extends Migration
                 ->constrained('users')
                 ->restrictOnDelete();
 
+            $table->string('delivery_address')->nullable();
+
             $table->foreignId('operator_id')
                 ->nullable()
                 ->constrained('users')
