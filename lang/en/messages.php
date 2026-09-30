@@ -30,5 +30,15 @@ return [
   'cartEmpty' => 'Your cart is empty.',
   'cartTotal' => 'Total',
   'cartCheckout' => 'Proceed to checkout',
+  'checkoutTitle' => 'Checkout',
+  'checkoutAddress' => 'Delivery address',
+  'checkoutUsername' => 'Username',
+  'checkoutEmail' => 'Email',
+  'checkoutProducts' => 'Products',
+  'checkoutTotal' => 'Total',
+  'checkoutSubmit' => 'Confirm order',
+  'checkoutQty' => 'Quantity',
+  'checkoutOrderSummary' => 'Order summary',
+  'checkoutOrder' => 'Order',
 ];
 ?>

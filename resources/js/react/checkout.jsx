@@ -39,25 +39,25 @@ function Checkout() {
         <div className={styles.checkout}>
             <div className={styles.panel}>
                 <div className={styles.header}>
-                    <h1 className={styles.title}>Checkout</h1>
-                    <span className={styles.headerTag}>Order</span>
+                    <h1 className={styles.title}>{translations.checkoutTitle}</h1>
+                    <span className={styles.headerTag}>{translations.checkoutOrder}</span>
                 </div>
 
                 <div className={styles.content}>
                     <div className={styles.formCard}>
                         <div className={styles.userGrid}>
                             <div className={styles.field}>
-                                <span className={styles.label}>Username</span>
+                                <span className={styles.label}>{translations.checkoutUsername}</span>
                                 <div className={styles.valueBox}>{user.username}</div>
                             </div>
 
                             <div className={styles.field}>
-                                <span className={styles.label}>Email</span>
+                                <span className={styles.label}>{translations.checkoutEmail}</span>
                                 <div className={styles.valueBox}>{user.email}</div>
                             </div>
 
                             <div className={`${styles.field} ${styles.fieldFull}`}>
-                                <label htmlFor="address" className={styles.label}>Delivery address</label>
+                                <label htmlFor="address" className={styles.label}>{translations.checkoutAddress}</label>
                                 <input
                                     id="address"
                                     className={styles.input}
@@ -69,13 +69,13 @@ function Checkout() {
                             </div>
                         </div>
 
-                        <h2 className={styles.sectionTitle}>Products</h2>
+                        <h2 className={styles.sectionTitle}>{translations.checkoutProducts}</h2>
                         <div className={styles.products}>
                             {cart.map(product => (
                                 <div key={product.id} className={styles.productRow}>
                                     <div className={styles.productMeta}>
                                         <span className={styles.productName}>{product.name}</span>
-                                        <span className={styles.productDetails}>Qty: {product.quantity}</span>
+                                        <span className={styles.productDetails}>{translations.checkoutQty}: {product.quantity}</span>
                                     </div>
                                     <span className={styles.productPrice}>€{(Number(product.price) * product.quantity).toFixed(2)}</span>
                                 </div>
@@ -84,15 +84,15 @@ function Checkout() {
                     </div>
 
                     <aside className={styles.summaryCard}>
-                        <h2 className={styles.sectionTitle}>Order summary</h2>
+                        <h2 className={styles.sectionTitle}>{translations.checkoutOrderSummary}</h2>
 
                         <div className={styles.summaryTotal}>
-                            <span>Total</span>
+                            <span>{translations.checkoutTotal}</span>
                             <strong>€{total.toFixed(2)}</strong>
                         </div>
 
                         <button type="button" className={styles.confirmButton} onClick={handleSubmit}>
-                            Confirm order
+                            {translations.checkoutSubmit}
                         </button>
                     </aside>
                 </div>

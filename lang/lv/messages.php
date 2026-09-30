@@ -30,5 +30,15 @@ return [
     'cartEmpty' => 'Jūsu grozs ir tukšs.',
     'cartTotal' => 'Kopā',
     'cartCheckout' => 'Turpināt uz apmaksu',
+    'checkoutTitle' => 'Apmaksa',
+    'checkoutUsername' => 'Lietotājvārds',
+    'checkoutEmail' => 'E-pasts',
+    'checkoutAddress' => 'Piegādes adrese',
+    'checkoutProducts' => 'Produkti',
+    'checkoutTotal' => 'Kopā',
+    'checkoutSubmit' => 'Apstiprināt pasūtījumu',
+    'checkoutQty' => 'Daudzums',
+    'checkoutOrderSummary' => 'Pasūtījuma kopsavilkums',
+    'checkoutOrder' => 'Pasūtījums',
 ];
 ?>
