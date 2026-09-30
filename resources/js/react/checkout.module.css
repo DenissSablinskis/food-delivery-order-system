@@ -77,6 +77,12 @@
     grid-column: 1 / -1;
 }
 
+.error {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #dc2626;
+}
+
 .label {
     color: var(--auth-form-label-color);
     font-size: 0.85rem;

@@ -8,6 +8,7 @@ function Checkout() {
         JSON.parse(localStorage.getItem(getCartKey())) || []
     );
     const [address, setAddress] = useState(user.address || '');
+    const [error, setError] = useState('');
 
     async function handleSubmit() {
         const response = await fetch('/checkout', {
@@ -28,6 +29,8 @@ function Checkout() {
         if (response.ok) {
             localStorage.removeItem(getCartKey());
             window.location.href = `/orders/${data.id}`;
+        } else {
+            setError(data.message);
         }
     }
 
@@ -66,6 +69,7 @@ function Checkout() {
                                     onChange={event => setAddress(event.target.value)}
                                     placeholder="Enter your address"
                                 />
+                                {error && <span className={styles.error}>{error}</span>}
                             </div>
                         </div>
 
