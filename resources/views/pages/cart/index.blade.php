@@ -10,6 +10,7 @@
             cartEmpty: @json(__('messages.cartEmpty')),
             cartQuantity: @json(__('messages.cartQuantity')),
             cartTotal: @json(__('messages.cartTotal')),
+            cartCheckout: @json(__('messages.cartCheckout')),
         };
     </script>
     

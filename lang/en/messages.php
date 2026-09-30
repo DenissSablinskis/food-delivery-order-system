@@ -29,5 +29,6 @@ return [
   'cartTitle' => 'Shopping cart',
   'cartEmpty' => 'Your cart is empty.',
   'cartTotal' => 'Total',
+  'cartCheckout' => 'Proceed to checkout',
 ];
 ?>

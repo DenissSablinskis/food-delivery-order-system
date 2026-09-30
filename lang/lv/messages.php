@@ -29,5 +29,6 @@ return [
     'cartTitle' => 'Iepirkumu grozs',
     'cartEmpty' => 'Jūsu grozs ir tukšs.',
     'cartTotal' => 'Kopā',
+    'cartCheckout' => 'Turpināt uz apmaksu',
 ];
 ?>

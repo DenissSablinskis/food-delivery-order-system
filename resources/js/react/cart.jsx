@@ -65,7 +65,7 @@ function App() {
             </div>
             {cart.length > 0 && (
                 <a className={styles.checkoutButton} href="/checkout">
-                    Proceed to checkout
+                    {translations.cartCheckout}
                 </a>
             )}
         </div>
