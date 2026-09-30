@@ -4,8 +4,96 @@
     <head>
         <meta charset="utf-8">
         <style>
+            * {
+                box-sizing: border-box;
+            }
+
             body {
-                font-family: DejaVu Sans;
+                margin: 0;
+                padding: 32px 16px;
+                background: #f3f4f6;
+                color: #1f2937;
+                font-family: DejaVu Sans, sans-serif;
+                line-height: 1.5;
+            }
+
+            body > div {
+                width: auto;
+                max-width: 680px;
+                margin: 0 auto;
+                padding: 32px;
+                background: #ffffff;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+            }
+
+            body > div > div:first-child {
+                padding-bottom: 16px;
+                border-bottom: 1px solid #d1d5db;
+            }
+
+            p {
+                margin: 0 0 8px;
+            }
+
+            p:last-child {
+                margin-bottom: 0;
+            }
+
+            h2 {
+                margin: 24px 0 8px;
+                padding-bottom: 8px;
+                border-bottom: 2px solid #2563eb;
+                color: #111827;
+                font-size: 1.25rem;
+            }
+
+            h2 + div > div {
+                display: table;
+                width: 100%;
+                padding: 10px 0;
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            h2 + div > div span {
+                display: table-cell;
+                vertical-align: middle;
+            }
+
+            h2 + div > div span:last-child {
+                width: 35%;
+                text-align: right;
+            }
+
+            h2 + div + div {
+                display: table;
+                width: 100%;
+                margin-top: 16px;
+                padding-top: 16px;
+                border-top: 2px solid #111827;
+                font-size: 1.1rem;
+            }
+
+            h2 + div + div strong {
+                display: table-cell;
+            }
+
+            h2 + div + div strong:last-child {
+                width: 35%;
+                text-align: right;
+            }
+
+            @media print {
+                body {
+                    padding: 0;
+                    background: #ffffff;
+                }
+
+                body > div {
+                    max-width: none;
+                    padding: 0;
+                    border: 0;
+                }
             }
         </style>
 
@@ -15,6 +103,10 @@
     <body>
         <div>
             <div>
+                <p>
+                    <strong>Customer:</strong>
+                    {{ $order->user->name }} {{ $order->user->surname }}
+                </p>
                 <p>
                     <strong>Order number:</strong>
                     #{{ $order->id }}

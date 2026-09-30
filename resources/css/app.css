@@ -80,6 +80,39 @@
             color: #f9fafb;
         }
     }
+
+    .order-confirmation {
+        border-color: #374151;
+        background: #111827;
+        color: #f3f4f6;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+        h1,
+        h2 {
+            color: #f8fafc;
+        }
+
+        > p {
+            color: #9ca3af;
+        }
+
+        .order-info,
+        .order-product {
+            border-color: #374151;
+        }
+
+        .order-total {
+            border-top-color: #d1d5db;
+        }
+
+        .order-actions a {
+            background: #3b82f6;
+
+            &:hover {
+                background: #60a5fa;
+            }
+        }
+    }
 }
 
 /* Pamatstils */
@@ -531,6 +564,111 @@ main {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
+        }
+    }
+
+    /* Pasūtījumu apstiprināšanas lapas stils */
+
+    .order-confirmation {
+        width: auto;
+        max-width: 720px;
+        margin: 32px auto;
+        padding: 28px 32px;
+        border: 1px solid #dbe2ea;
+        border-radius: 10px;
+        background: #ffffff;
+        color: #1f2937;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+
+        h1 {
+            margin: 0 0 6px;
+            color: #111827;
+            font-size: 1.8rem;
+        }
+
+        > p {
+            margin: 0 0 24px;
+            color: #64748b;
+        }
+
+        h2 {
+            margin: 24px 0 8px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #2563eb;
+            color: #111827;
+            font-size: 1.25rem;
+        }
+
+        .order-info {
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e5e7eb;
+
+            p {
+                margin: 0 0 8px;
+            }
+
+            p:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .order-product,
+        .order-total {
+            display: table;
+            width: 100%;
+        }
+
+        .order-product {
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+
+            span {
+                display: table-cell;
+            }
+
+            span:last-child {
+                width: 35%;
+                text-align: right;
+            }
+        }
+
+        .order-total {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 2px solid #1f2937;
+            font-size: 1.1rem;
+
+            strong {
+                display: table-cell;
+            }
+
+            strong:last-child {
+                width: 35%;
+                text-align: right;
+            }
+        }
+
+        .order-actions {
+            margin-top: 24px;
+
+            a {
+                display: inline-block;
+                padding: 11px 18px;
+                border-radius: 7px;
+                background: #2563eb;
+                color: #ffffff;
+                font-weight: 700;
+                text-decoration: none;
+            }
+
+            a:hover {
+                background: #1d4ed8;
+            }
+        }
+
+        @media (max-width: 600px) {
+            margin: 20px 12px;
+            padding: 22px 18px;
         }
     }
 
