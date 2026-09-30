@@ -56,8 +56,8 @@ Route::post('/checkout', [ProductController::class, 'createOrder'])->middleware(
 
 Route::get('/orders/{order}', function (Order $order) {
     return view('pages.orders.show', compact('order'));
-})->middleware('auth');
+})->middleware(['auth', 'order.owner']);
 
 // Pasūtījumu rēķina lejupielādes maršruts
 
-Route::get('/orders/{order}/invoice', [OrderController::class, 'invoice'])->name('orders.invoice')->middleware('auth');
+Route::get('/orders/{order}/invoice', [OrderController::class, 'invoice'])->name('orders.invoice')->middleware(['auth', 'order.owner']);
