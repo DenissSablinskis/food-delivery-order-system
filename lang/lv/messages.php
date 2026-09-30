@@ -40,5 +40,13 @@ return [
     'checkoutQty' => 'Daudzums',
     'checkoutOrderSummary' => 'Pasūtījuma kopsavilkums',
     'checkoutOrder' => 'Pasūtījums',
+    'orderConfirmed' => 'Pasūtījums apstiprināts',
+    'orderThankYou' => 'Paldies par jūsu pasūtījumu!',
+    'orderNumber' => 'Pasūtījuma numurs',
+    'orderStatus' => 'Statuss',
+    'orderAddress' => 'Piegādes adrese',
+    'orderProducts' => 'Produkti',
+    'orderTotal' => 'Kopā',
+    'orderDownloadInvoice' => 'Lejupielādēt rēķinu',
 ];
 ?>

@@ -4,28 +4,28 @@
 
     <div class="order-confirmation">
 
-        <h1>Order confirmed</h1>
+        <h1>{{ __('messages.orderConfirmed') }}</h1>
 
-        <p>Thank you for your order!</p>
+        <p>{{ __('messages.orderThankYou') }}</p>
 
         <div class="order-info">
             <p>
-                <strong>Order number:</strong>
+                <strong>{{ __('messages.orderNumber') }}:</strong>
                 #{{ $order->id }}
             </p>
 
             <p>
-                <strong>Status:</strong>
+                <strong>{{ __('messages.orderStatus') }}:</strong>
                 {{ $order->status }}
             </p>
 
             <p>
-                <strong>Delivery address:</strong>
+                <strong>{{ __('messages.orderAddress') }}:</strong>
                 {{ $order->delivery_address }}
             </p>
         </div>
 
-        <h2>Products</h2>
+        <h2>{{ __('messages.orderProducts') }}</h2>
 
         <div class="order-products">
 
@@ -51,7 +51,7 @@
 
         <div class="order-total">
 
-            <strong>Total</strong>
+            <strong>{{ __('messages.orderTotal') }}:</strong>
 
             <strong>
                 €{{ number_format($order->orderedProducts->sum(function ($orderedProduct) {
@@ -64,7 +64,7 @@
 
         <div class="order-actions">
             <a href="{{ route('orders.invoice', $order->id) }}">
-                Download invoice
+                {{ __('messages.orderDownloadInvoice') }}
             </a>
         </div>
 

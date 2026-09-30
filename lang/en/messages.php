@@ -40,5 +40,13 @@ return [
   'checkoutQty' => 'Quantity',
   'checkoutOrderSummary' => 'Order summary',
   'checkoutOrder' => 'Order',
+  'orderConfirmed' => 'Order confirmed',
+  'orderThankYou' => 'Thank you for your order!',
+  'orderNumber' => 'Order number',
+  'orderStatus' => 'Status',
+  'orderAddress' => 'Delivery address',
+  'orderProducts' => 'Products',
+  'orderTotal' => 'Total',
+  'orderDownloadInvoice' => 'Download invoice',
 ];
 ?>
