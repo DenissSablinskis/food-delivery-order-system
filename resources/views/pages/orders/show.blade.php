@@ -2,23 +2,72 @@
 
 @section('content')
 
-    <h1>Order confirmed</h1>
+    <div class="order-confirmation">
 
-    <p>Thank you for your order!</p>
+        <h1>Order confirmed</h1>
 
-    <p>Order number: #{{ $order->id }}</p>
+        <p>Thank you for your order!</p>
 
-    <p>Ordered products:</p>
-    <ul>
-        @foreach ($order->orderedProducts as $orderedProduct)
-            <li>{{ $orderedProduct->product_count }} x {{ $orderedProduct->product->name }} - €{{ number_format($orderedProduct->unit_price_at_purchase, 2) }}</li>
-        @endforeach
-    </ul>
+        <div class="order-info">
+            <p>
+                <strong>Order number:</strong>
+                #{{ $order->id }}
+            </p>
 
-    <p>Total amount: €{{ number_format($order->orderedProducts->sum(function ($orderedProduct) {
-        return $orderedProduct->product_count * $orderedProduct->unit_price_at_purchase;
-    }), 2) }}</p>
+            <p>
+                <strong>Status:</strong>
+                {{ $order->status }}
+            </p>
 
-    <p>Status: {{ $order->status }}</p>
+            <p>
+                <strong>Delivery address:</strong>
+                {{ $order->delivery_address }}
+            </p>
+        </div>
+
+        <h2>Products</h2>
+
+        <div class="order-products">
+
+            @foreach ($order->orderedProducts as $orderedProduct)
+
+                <div class="order-product">
+
+                    <span>
+                        {{ $orderedProduct->product->name }}
+                    </span>
+
+                    <span>
+                        {{ $orderedProduct->product_count }}
+                        ×
+                        €{{ number_format($orderedProduct->unit_price_at_purchase, 2) }}
+                    </span>
+
+                </div>
+
+            @endforeach
+
+        </div>
+
+        <div class="order-total">
+
+            <strong>Total</strong>
+
+            <strong>
+                €{{ number_format($order->orderedProducts->sum(function ($orderedProduct) {
+                    return $orderedProduct->product_count *
+                           $orderedProduct->unit_price_at_purchase;
+                }), 2) }}
+            </strong>
+
+        </div>
+
+        <div class="order-actions">
+            <a href="{{ route('orders.invoice', $order->id) }}">
+                Download invoice
+            </a>
+        </div>
+
+    </div>
 
 @endsection
