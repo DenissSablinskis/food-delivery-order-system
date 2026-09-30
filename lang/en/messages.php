@@ -48,5 +48,12 @@ return [
   'orderProducts' => 'Products',
   'orderTotal' => 'Total',
   'orderDownloadInvoice' => 'Download invoice',
+  'invoiceCustomer' => 'Customer',
+  'invoiceOrderNumber' => 'Order number',
+  'invoiceOrderDate' => 'Order date',
+  'invoiceDeliveryAddress' => 'Delivery address',
+  'invoiceProduct' => 'Products',
+  'invoiceTotal' => 'Total',
+  'invoiceTitle' => 'Invoice',
 ];
 ?>

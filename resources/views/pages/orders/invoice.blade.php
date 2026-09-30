@@ -97,33 +97,33 @@
             }
         </style>
 
-        <title>Invoice #{{ $order->id }}</title>
+        <title>{{ __('messages.invoiceTitle') }} #{{ $order->id }}</title>
     </head>
 
     <body>
         <div>
             <div>
                 <p>
-                    <strong>Customer:</strong>
+                    <strong>{{ __('messages.invoiceCustomer') }}:</strong>
                     {{ $order->user->name }} {{ $order->user->surname }}
                 </p>
                 <p>
-                    <strong>Order number:</strong>
+                    <strong>{{ __('messages.invoiceOrderNumber') }}:</strong>
                     #{{ $order->id }}
                 </p>
 
                 <p>
-                    <strong>Order date:</strong>
+                    <strong>{{ __('messages.invoiceOrderDate') }}:</strong>
                     {{ $order->created_at->format('d.m.Y H:i') }}
                 </p>
 
                 <p>
-                    <strong>Delivery address:</strong>
+                    <strong>{{ __('messages.invoiceDeliveryAddress') }}:</strong>
                     {{ $order->delivery_address }}
                 </p>
             </div>
 
-            <h2>Products</h2>
+            <h2>{{ __('messages.invoiceProduct') }}</h2>
 
             <div>
 
@@ -149,7 +149,7 @@
 
             <div>
 
-                <strong>Total</strong>
+                <strong>{{ __('messages.invoiceTotal') }}:</strong>
 
                 <strong>
                     €{{ number_format($total, 2) }}

@@ -48,5 +48,12 @@ return [
     'orderProducts' => 'Produkti',
     'orderTotal' => 'Kopā',
     'orderDownloadInvoice' => 'Lejupielādēt rēķinu',
+    'invoiceTitle' => 'Rēķins',
+    'invoiceCustomer' => 'Pasūtītājs',
+    'invoiceOrderNumber' => 'Pasūtījuma numurs',
+    'invoiceOrderDate' => 'Pasūtījuma datums',
+    'invoiceDeliveryAddress' => 'Piegādes adrese',
+    'invoiceProduct' => 'Produkti',
+    'invoiceTotal' => 'Kopā',
 ];
 ?>
