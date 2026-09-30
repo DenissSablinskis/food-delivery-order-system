@@ -113,8 +113,8 @@
                 </p>
 
                 <p>
-                    <strong>Status:</strong>
-                    {{ $order->status }}
+                    <strong>Order date:</strong>
+                    {{ $order->created_at->format('d.m.Y H:i') }}
                 </p>
 
                 <p>
