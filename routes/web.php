@@ -52,11 +52,15 @@ Route::get('/checkout', [ProductController::class, 'checkout'])->name('checkout.
 
 Route::post('/checkout', [ProductController::class, 'createOrder'])->middleware('auth')->name('checkout.store');
 
+// Lietotāja pasūtījumu saraksta maršruts
+
+Route::get('/orders', [OrderController::class, 'index'])->middleware('auth')->name('orders.index');
+
 // Pasūtījumu apskates maršruts
 
 Route::get('/orders/{order}', function (Order $order) {
     return view('pages.orders.show', compact('order'));
-})->middleware(['auth', 'order.owner']);
+})->middleware(['auth', 'order.owner'])->name('orders.show');
 
 // Pasūtījumu rēķina lejupielādes maršruts
 

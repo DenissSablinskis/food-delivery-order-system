@@ -8,7 +8,26 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrderController extends Controller
 {
+
+    public function index() {
+
+        $orders = auth()->user()->orders()->with('orderedProducts')->get();
+
+        foreach ($orders as $order) {
+
+            $total = $order->orderedProducts->sum(function ($orderedProduct) {
+                return $orderedProduct->product_count * $orderedProduct->unit_price_at_purchase;
+            });
+            
+            $order->total = $total;
+        }
+        
+        return view('pages.orders.index', compact('orders'));  
+    }
+
     public function invoice(Order $order) {
+
+        $order->load('orderedProducts');
 
         $total = $order->orderedProducts->sum(function ($orderedProduct) {
             return $orderedProduct->product_count *
