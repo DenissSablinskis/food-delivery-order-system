@@ -1,27 +1,30 @@
 
 @extends('layouts.app')
 
+@section('main-class', 'orders-main')
+
 @section('content')
+    <div class="orders-grid">
+        @foreach ($orders as $order)
+            <article class="order-card">
+                <div class="order-card-header">
+                    <h2>Pasūtījums Nr. {{ $order->id }}</h2>
+                    <span class="order-status">{{ $order->status }}</span>
+                </div>
 
-    @foreach ($orders as $order)
+                <p class="order-date">
+                    <strong>Pasūtīts:</strong> {{ $order->created_at }}
+                </p>
 
-        <p>
-            <strong> Pasūtījums Nr. {{ $order->id }} </strong>
-        </p>
-        <p>
-            <strong> Pasūtīts: </strong> {{ $order->created_at }}
-        </p>
-        <p>
-            <strong> Pasūtījuma status: </strong> {{ $order->status }}
-        </p>
-        <p>
-            <strong> Kopējā summa: </strong> {{ number_format($order->total, 2) }} €
-        </p>
-        <p>
-            <a href="{{ route('orders.show', $order) }}">Skatīt pasūtījumu</a>
-        </p>
+                <p class="order-total">
+                    <strong>Kopējā summa:</strong>
+                    <span>{{ number_format($order->total, 2) }} €</span>
+                </p>
 
-    @endforeach
-
+                <a class="order-card-link" href="{{ route('orders.show', $order) }}">
+                    Skatīt pasūtījumu
+                </a>
+            </article>
+        @endforeach
+    </div>
 @endsection
-
