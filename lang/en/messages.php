@@ -55,5 +55,17 @@ return [
   'invoiceProduct' => 'Products',
   'invoiceTotal' => 'Total',
   'invoiceTitle' => 'Invoice',
+  'profileUsername' => 'Username',
+  'profileEmail' => 'Email',
+  'profileAddress' => 'Address',
+  'profileHeader' => 'Profile',
+  'profileSubheader' => 'My Account',
+  'profileUpdate' => 'Update profile',
+  'profileBack' => 'Back to profile',
+  'profileSave' => 'Save changes',
+  'orderHeader' => 'Order No.',
+  'orderDate' => 'Ordered',
+  'OrderTotal' => 'Total amount',
+  'OrderInfo' => 'Order information',
 ];
 ?>

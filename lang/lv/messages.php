@@ -55,5 +55,17 @@ return [
     'invoiceDeliveryAddress' => 'Piegādes adrese',
     'invoiceProduct' => 'Produkti',
     'invoiceTotal' => 'Kopā',
+    'profileUsername' => 'Lietotāvārds',
+    'profileEmail' => 'E-pasts',
+    'profileAddress' => 'Adrese',
+    'profileHeader' => 'Profila informācija',
+    'profileSubheader' => 'Mans konts',
+    'profileUpdate' => 'Rediģēt profilu',
+    'profileBack' => 'Atpakaļ uz profilu',
+    'profileSave' => 'Saglabāt izmaiņas',
+    'orderHeader' => 'Pasūtījums Nr.',
+    'orderDate' => 'Pasūtīts',
+    'OrderTotal' => 'Kopējā summa',
+    'OrderInfo' => 'Pasūtījuma informācija',
 ];
 ?>

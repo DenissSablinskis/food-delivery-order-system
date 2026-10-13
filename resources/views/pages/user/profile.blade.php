@@ -15,28 +15,28 @@
                 <i class="bi bi-person-fill"></i>
             </span>
             <div>
-                <p class="profile-eyebrow">Mans konts</p>
-                <h1>Profila informācija</h1>
+                <p class="profile-eyebrow">{{ __('messages.profileSubheader') }}</p>
+                <h1>{{ __('messages.profileHeader') }}</h1>
             </div>
         </div>
 
         <dl class="profile-details">
             <div class="profile-detail">
-                <dt>Lietotājvārds</dt>
+                <dt>{{ __('messages.profileUsername') }}</dt>
                 <dd>{{ $user->username }}</dd>
             </div>
             <div class="profile-detail">
-                <dt>E-pasts</dt>
+                <dt>{{ __('messages.profileEmail') }}</dt>
                 <dd>{{ $user->email }}</dd>
             </div>
             <div class="profile-detail">
-                <dt>Adrese</dt>
+                <dt>{{ __('messages.profileAddress') }}</dt>
                 <dd>{{ $user->address }}</dd>
             </div>
         </dl>
 
         <a href="{{ route('profile.edit') }}" class="profile-edit-link">
-            Rediģēt profilu
+            {{ __('messages.profileUpdate') }}
         </a>
     </section>
 @endsection

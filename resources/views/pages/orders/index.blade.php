@@ -8,21 +8,21 @@
         @foreach ($orders as $order)
             <article class="order-card">
                 <div class="order-card-header">
-                    <h2>Pasūtījums Nr. {{ $order->id }}</h2>
+                    <h2>{{ __('messages.orderHeader') }} {{ $order->id }}</h2>
                     <span class="order-status">{{ $order->status }}</span>
                 </div>
 
                 <p class="order-date">
-                    <strong>Pasūtīts:</strong> {{ $order->created_at }}
+                    <strong>{{ __('messages.orderDate') }}:</strong> {{ $order->created_at }}
                 </p>
 
                 <p class="order-total">
-                    <strong>Kopējā summa:</strong>
+                    <strong>{{ __('messages.OrderTotal') }}:</strong>
                     <span>{{ number_format($order->total, 2) }} €</span>
                 </p>
 
                 <a class="order-card-link" href="{{ route('orders.show', $order) }}">
-                    Skatīt pasūtījumu
+                    {{ __('messages.OrderInfo') }}
                 </a>
             </article>
         @endforeach
