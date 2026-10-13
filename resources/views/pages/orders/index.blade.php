@@ -9,7 +9,7 @@
             <article class="order-card">
                 <div class="order-card-header">
                     <h2>{{ __('messages.orderHeader') }} {{ $order->id }}</h2>
-                    <span class="order-status">{{ $order->status }}</span>
+                    <span class="order-status">{{ __('messages.order_status.' . $order->status) }}</span>
                 </div>
 
                 <p class="order-date">

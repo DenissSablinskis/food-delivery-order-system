@@ -1,7 +1,7 @@
 <nav class="nav-links" id="navLinks">
     <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active-link' : '' }}">{{ __('messages.navHome') }}</a>
     <a href="{{ route('profile.show') }}" class="{{ request()->routeIs('profile.show') ? 'active-link' : '' }}">{{ __('messages.navProfile') }}</a>
-    <a href="{{ route('orders.index') }}" class="{{ request()->routeIs('orders.index') ? 'active-link' : '' }}">Mani pasūtījumi</a>
+    <a href="{{ route('orders.index') }}" class="{{ request()->routeIs('orders.index') ? 'active-link' : '' }}">{{ __('messages.navOrders') }}</a>
     <a href="{{ route('products.index') }}" class="{{ request()->routeIs('products.index') ? 'active-link' : '' }}">{{ __('messages.navProducts') }}</a>
     <a href="{{ route('cart.index') }}" class='cart-link'>
         {{ __('messages.navCart') }}

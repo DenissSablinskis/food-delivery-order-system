@@ -7,6 +7,7 @@ return [
     'navLogout'=> 'Iziet',
     'navLogin'=>'Ieiet',
     'navRegister'=> 'Reģistrēties',
+    'navOrders'=> 'Mani pasūtījumi',
     'heading'=> 'Par uzņēmumu',
     'text'=> 'GAISMA pārtikas piegādes pasūtīšanas sistēma ir moderns risinājums ērtai un ātrai pārtikas produktu iegādei. Sistēma ļauj klientiem pārlūkot plašu pārtikas preču katalogu ar precīziem aprakstiem un cenām, viegli veidot un pārvaldīt iepirkumu grozu, izvēlēties piegādes laiku un adresi, kā arī saņemt pasūtījuma apstiprinājumu un piegādes statusa atjauninājumus.',
     'loginEmail'=>'Ievadiet e-pastu',
@@ -67,5 +68,10 @@ return [
     'orderDate' => 'Pasūtīts',
     'OrderTotal' => 'Kopējā summa',
     'OrderInfo' => 'Pasūtījuma informācija',
+    'order_status' => [
+        'New' => 'Jauns',
+        'Processing' => 'Apstrādē',
+        'Delivered' => 'Piegādāts',
+    ],
 ];
 ?>
