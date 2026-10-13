@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Models\Order;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('pages.home');
@@ -56,6 +57,16 @@ Route::post('/checkout', [ProductController::class, 'createOrder'])->middleware(
 
 Route::get('/orders', [OrderController::class, 'index'])->middleware('auth')->name('orders.index');
 
+// Lietotāja profila maršruts
+
+Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
+
+// Profila rēdiģešanas maršruti 
+
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile.edit');
+
+Route::put('/profile', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
+
 // Pasūtījumu apskates maršruts
 
 Route::get('/orders/{order}', function (Order $order) {
@@ -65,3 +76,4 @@ Route::get('/orders/{order}', function (Order $order) {
 // Pasūtījumu rēķina lejupielādes maršruts
 
 Route::get('/orders/{order}/invoice', [OrderController::class, 'invoice'])->name('orders.invoice')->middleware(['auth', 'order.owner']);
+
