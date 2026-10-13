@@ -16,7 +16,14 @@ class SetLocale
     public function handle(Request $request, Closure $next): Response
     {
         $allowedLocales = ['lv', 'en'];
-        $locale = session('locale', config('app.locale'));
+
+        // Ja lietotājs ir administrators, kurjers vai operators viņa izvēlne tiek attēlota tika latviešu valodā
+
+        if ($request->user() !== null && in_array($request->user()->role, ['admin', 'operator', 'courier'])) {
+            $locale = 'lv';
+        } else {
+            $locale = session('locale', config('app.locale'));
+        }
 
         // Aizsardība no neeksistējošam lokalēm, piemēram, ievadītām adresu joslā
         if (!in_array($locale, $allowedLocales, true)) {
