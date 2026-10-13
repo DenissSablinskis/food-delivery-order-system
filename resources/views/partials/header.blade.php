@@ -15,29 +15,33 @@
                 @else
                     @include('partials.nav.guest')
                 @endauth
-            
-            <div class="langAndTheme">
 
-                <!-- Valodas izvēlne -->
-                <div class="language-switcher">
-                    <form method='post' action="{{ route('locale.switch', ['locale' => 'lv']) }}">
-                        @csrf
-                        <button type="submit" class="toggleLanguage {{ app()->getLocale() === 'lv' ? 'active' : '' }}">
-                            LV
-                        </button>
-                    </form>
-                    <span class="lang-divider">|</span>
-                    <form method='post' action="{{ route('locale.switch', ['locale' => 'en']) }}">
-                        @csrf
-                        <button type="submit" class="toggleLanguage {{ app()->getLocale() === 'en' ? 'active' : '' }}">
-                            EN
-                        </button>
-                    </form>
-                </div>
+                <!-- Valodas un tēmas parslēgšana paradas tikai parastājiem lietotājiem -->
+
+                @if (auth()->guest() || auth()->user()->role === 'customer')
+                    <div class="langAndTheme">
+
+                        <!-- Valodas izvēlne -->
+                        <div class="language-switcher">
+                            <form method='post' action="{{ route('locale.switch', ['locale' => 'lv']) }}">
+                                @csrf
+                                <button type="submit" class="toggleLanguage {{ app()->getLocale() === 'lv' ? 'active' : '' }}">
+                                    LV
+                                </button>
+                            </form>
+                            <span class="lang-divider">|</span>
+                            <form method='post' action="{{ route('locale.switch', ['locale' => 'en']) }}">
+                                @csrf
+                                <button type="submit" class="toggleLanguage {{ app()->getLocale() === 'en' ? 'active' : '' }}">
+                                    EN
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Tēmas pārslēgšanas poga -->
+                        <button id="themeToggle"></button>
                 
-                <!-- Tēmas pārslēgšanas poga -->
-                <button id="themeToggle"></button>
-        
-            </div>
+                    </div>
+                @endif
             
         </header>

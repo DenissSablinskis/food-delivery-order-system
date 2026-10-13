@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Models\Order;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('pages.home');
@@ -76,4 +77,16 @@ Route::get('/orders/{order}', function (Order $order) {
 // Pasūtījumu rēķina lejupielādes maršruts
 
 Route::get('/orders/{order}/invoice', [OrderController::class, 'invoice'])->name('orders.invoice')->middleware(['auth', 'order.owner']);
+
+// Administratora paneļa maršruti
+
+Route::middleware(['auth', 'role:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+
+        Route::get('/', [AdminController::class, 'index'])->name('index');
+
+        
+    });
 
