@@ -69,9 +69,11 @@ return [
     'OrderTotal' => 'Kopējā summa',
     'OrderInfo' => 'Pasūtījuma informācija',
     'order_status' => [
-        'New' => 'Jauns',
-        'Processing' => 'Apstrādē',
-        'Delivered' => 'Piegādāts',
+        'new' => 'Jauns',
+        'in_process' => 'Apstrādē',
+        'delivering' => 'Piegādē',
+        'delivered' => 'Piegādāts',
+        'cancelled' => 'Atcelts',
     ],
 ];
 ?>

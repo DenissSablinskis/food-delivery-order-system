@@ -31,6 +31,13 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
+            $user = Auth::user();
+            
+            // Ja lietotājs ir administrātors, viņš tiek paradresēts pasūtījumu lapā
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.orders.index');
+            }
+
             return redirect()->intended('/home');
         }
 

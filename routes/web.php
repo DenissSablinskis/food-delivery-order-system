@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminOrderController;
 
 Route::get('/', function () {
     return view('pages.home');
@@ -86,6 +87,7 @@ Route::middleware(['auth', 'role:admin'])
     ->group(function () {
 
         Route::get('/', [AdminController::class, 'index'])->name('index');
+        Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
 
         
     });

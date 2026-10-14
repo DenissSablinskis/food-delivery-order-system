@@ -69,8 +69,10 @@ return [
   'OrderTotal' => 'Total amount',
   'OrderInfo' => 'Order information',
   'order_status' => [
-      'New' => 'New',
-      'Processing' => 'Processing',
-      'Delivered' => 'Delivered',
+      'new' => 'New',
+      'in_process' => 'In process',
+      'delivering' => 'Delivering',
+      'delivered' => 'Delivered',
+      'cancelled' => 'Cancelled',
   ],
 ];

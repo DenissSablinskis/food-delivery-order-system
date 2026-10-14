@@ -48,7 +48,7 @@ class ProductController extends Controller
             $order = Order::create([
                 'user_id' => auth()->id(),
                 'delivery_address' => $request->address,
-                'status' => 'New',
+                'status' => 'new',
             ]);
 
             foreach ($request->cart as $item) {
