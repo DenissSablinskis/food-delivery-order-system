@@ -32,6 +32,8 @@ return [
   'cartTotal' => 'Total',
   'cartCheckout' => 'Proceed to checkout',
   'checkoutTitle' => 'Checkout',
+  'checkoutName' => 'Name',
+  'checkoutSurname' => 'Surname',
   'checkoutAddress' => 'Delivery address',
   'checkoutUsername' => 'Username',
   'checkoutEmail' => 'Email',

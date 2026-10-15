@@ -32,6 +32,8 @@ return [
     'cartTotal' => 'Kopā',
     'cartCheckout' => 'Turpināt uz apmaksu',
     'checkoutTitle' => 'Apmaksa',
+    'checkoutName' => 'Vārds',
+    'checkoutSurname' => 'Uzvārds',
     'checkoutUsername' => 'Lietotājvārds',
     'checkoutEmail' => 'E-pasts',
     'checkoutAddress' => 'Piegādes adrese',

@@ -31,6 +31,7 @@ class ProductController extends Controller
             $user = auth()->user();
 
             // Pārbauda, vai visiem produktiem ir pietiekami krājumi
+            
             foreach ($request->cart as $item) {
                 $product = Product::findOrFail($item['id']);
 
@@ -41,8 +42,13 @@ class ProductController extends Controller
                 }
             }
 
+            // Atjauno lietotāja adresi, vārdu un uzvārdu profilā.
+
             $user->update([
-                'address' => $request->address, // Aizpilda lietotāja adresi, ja tā nav norādīta
+                'address' => $request->address,
+                'name' => $request->name,
+                'surname' => $request->surname, 
+                 
             ]);
 
             $order = Order::create([
