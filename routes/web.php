@@ -69,6 +69,8 @@ Route::get('/profile/edit', [ProfileController::class, 'edit'])->middleware('aut
 
 Route::put('/profile', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
 
+Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->middleware('auth')->name('profile.update-password');
+
 // Pasūtījumu apskates maršruts
 
 Route::get('/orders/{order}', function (Order $order) {

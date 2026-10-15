@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\UpdatePasswordRequest;
 
 class ProfileController extends Controller
 {
@@ -36,6 +37,18 @@ class ProfileController extends Controller
 
         return redirect(route('profile.show'))->with('success', 'Profils veiksmīgi atjaunināts!');
 
+    }
+
+    public function updatePassword(UpdatePasswordRequest $request) {
+
+        $user = auth()->user();
+        $passwords = $request->validated();
+
+        $user->update([
+            'password' => $passwords['password']
+        ]);
+
+        return redirect(route('profile.show'))->with('success', 'Parole veiksmīgi nomainīta!');
     }
 
 }
