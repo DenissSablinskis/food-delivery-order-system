@@ -59,6 +59,8 @@ return [
   'invoiceTotal' => 'Total',
   'invoiceTitle' => 'Invoice',
   'profileUsername' => 'Username',
+  'profileName' => 'Name',
+  'profileSurname' => 'Surname',
   'profileEmail' => 'Email',
   'profileAddress' => 'Address',
   'profileHeader' => 'Profile',

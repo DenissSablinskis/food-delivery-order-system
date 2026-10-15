@@ -59,6 +59,8 @@ return [
     'invoiceProduct' => 'Produkti',
     'invoiceTotal' => 'Kopā',
     'profileUsername' => 'Lietotāvārds',
+    'profileName' => 'Vārds',
+    'profileSurname' => 'Uzvārds',
     'profileEmail' => 'E-pasts',
     'profileAddress' => 'Adrese',
     'profileHeader' => 'Profila informācija',

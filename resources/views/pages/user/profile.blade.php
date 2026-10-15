@@ -3,12 +3,17 @@
 @section('main-class', 'profile-main')
 
 @section('content')
+
+    <!-- Ja tika mainīti profila dati, šeit tiek paradīts ziņojums par veikmīgo izmaiņu -->
+
     <section class="profile-card">
         @if (session('success'))
             <div class="profile-success-message" role="status">
                 {{ session('success') }}
             </div>
         @endif
+
+        <!-- Profila datu kartiņa -->
 
         <div class="profile-card-heading">
             <span class="profile-avatar" aria-hidden="true">
@@ -24,6 +29,14 @@
             <div class="profile-detail">
                 <dt>{{ __('messages.profileUsername') }}</dt>
                 <dd>{{ $user->username }}</dd>
+            </div>
+            <div class="profile-detail">
+                <dt>{{ __('messages.profileName') }}</dt>
+                <dd>{{ $user->name }}</dd>
+            </div>
+            <div class="profile-detail">
+                <dt>{{ __('messages.profileSurname') }}</dt>
+                <dd>{{ $user->surname }}</dd>
             </div>
             <div class="profile-detail">
                 <dt>{{ __('messages.profileEmail') }}</dt>
