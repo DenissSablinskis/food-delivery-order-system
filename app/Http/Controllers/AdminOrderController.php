@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Http\Requests\UpdateOrderStatusRequest;
 
 class AdminOrderController extends Controller
 {
@@ -17,5 +18,16 @@ class AdminOrderController extends Controller
             $order->total = $total;
         }
         return view('pages.admin.orders.index', compact('orders'));
+    }
+
+    public function updateStatus(Order $order, UpdateOrderStatusRequest $request) {
+
+        $data = $request->validated();
+
+        $order->update([
+            'status' => $data['status'],
+        ]);
+
+        return redirect()->route('admin.orders.index')->with('success', 'Pasūtījuma statuss veiksmīgi atjaunināts!');
     }
 }

@@ -88,6 +88,7 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::get('/', [AdminController::class, 'index'])->name('index');
         Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+        Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.update-status');
 
         
     });
