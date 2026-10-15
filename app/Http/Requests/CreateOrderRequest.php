@@ -24,8 +24,8 @@ class CreateOrderRequest extends FormRequest
     {
         return [
             'address' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\'-]+$/u'],
+            'surname' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\'-]+$/u'],
             'cart' => ['required', 'array', 'min:1'],
             
             'cart.*.id' => ['required', 'integer', 'exists:products,id'],

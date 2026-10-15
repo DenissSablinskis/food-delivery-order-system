@@ -27,8 +27,8 @@ class UpdateProfileRequest extends FormRequest
         'email' => ['required', 'email', Rule::unique('users')->ignore(auth()->user()->id)],
         'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore(auth()->user()->id)],
         'address' => ['required', 'string', 'max:255'],
-        'name' => ['required', 'string', 'max:255'],
-        'surname' => ['required', 'string', 'max:255'],
+        'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\'-]+$/u'],
+        'surname' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\'-]+$/u'],
         ];
     }
 }
