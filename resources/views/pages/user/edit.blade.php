@@ -14,6 +14,8 @@
             </div>
         </div>
 
+        <!-- Lietotāja datu rediģešanas forma. Ja validācija nav izieta zem formas tiek paradīts kļūdas paziņojums -->
+
         <form method="post" action="{{ route('profile.update') }}" class="profile-edit-form">
             @csrf
             @method('PUT')
@@ -22,6 +24,22 @@
                 <label for="email">{{ __('messages.profileEmail') }}</label>
                 <input type="email" id="email" name="email" value="{{ old('email', auth()->user()->email) }}" required>
                 @error('email')
+                    <div class="field-error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="profile-form-field">
+                <label for="name">{{ __('messages.profileName') }}</label>
+                <input type="text" id="name" name="name" value="{{ old('name', auth()->user()->name) }}" required>
+                @error('name')
+                    <div class="field-error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="profile-form-field">
+                <label for="surname">{{ __('messages.profileSurname') }}</label>
+                <input type="text" id="surname" name="surname" value="{{ old('surname', auth()->user()->surname) }}" required>
+                @error('surname')
                     <div class="field-error">{{ $message }}</div>
                 @enderror
             </div>

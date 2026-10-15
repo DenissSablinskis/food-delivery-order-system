@@ -30,6 +30,8 @@ class ProfileController extends Controller
             'username' => $credentials['username'],
             'email' => $credentials['email'],
             'address' => $credentials['address'],
+            'name' => $credentials['name'],
+            'surname' => $credentials['surname']
         ]);
 
         return redirect(route('profile.show'))->with('success', 'Profils veiksmīgi atjaunināts!');
