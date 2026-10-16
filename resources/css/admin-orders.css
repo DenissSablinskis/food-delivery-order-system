@@ -1,0 +1,298 @@
+main {
+/* Administratora pasūtījumu pārvaldības lapas stili */
+    .admin-orders-page {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding: 8px 0 24px;
+
+        @media (min-width: 640px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @media (min-width: 900px) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        .admin-orders-heading {
+            grid-column: 1 / -1;
+            margin-bottom: 4px;
+            text-align: center;
+
+            h1 {
+                margin: 0 0 10px;
+                color: var(--auth-form-title-color);
+                font-size: clamp(1.8rem, 5vw, 2.6rem);
+                line-height: 1.15;
+            }
+        }
+
+        .admin-orders-eyebrow {
+            margin: 0 0 8px;
+            color: #2563eb;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .admin-orders-description {
+            margin: 0;
+            color: var(--auth-form-label-color);
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .admin-success-message,
+        .admin-error-message {
+            grid-column: 1 / -1;
+            padding: 13px 16px;
+            border: 1px solid;
+            border-radius: 12px;
+            font-size: 0.95rem;
+        }
+
+        .admin-success-message {
+            border-color: #86efac;
+            background: #f0fdf4;
+            color: #166534;
+        }
+
+        .admin-error-message {
+            border-color: #fca5a5;
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        .admin-order-card {
+            display: grid;
+            min-width: 0;
+            gap: 20px;
+            padding: 20px;
+            border: var(--auth-container-border);
+            border-radius: 18px;
+            background: var(--auth-container-bg);
+            box-shadow: var(--auth-container-box-shadow);
+
+            @media (min-width: 640px) {
+                padding: 26px;
+            }
+        }
+
+        .admin-order-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 0 0 16px;
+            border: 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+            background: transparent;
+
+            h2 {
+                margin: 0;
+                color: var(--auth-form-title-color);
+                font-size: 1.35rem;
+            }
+        }
+
+        .admin-order-label,
+        .admin-order-detail-label {
+            display: block;
+            margin: 0 0 5px;
+            color: var(--auth-form-label-color);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .admin-order-status {
+            flex-shrink: 0;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.12);
+            color: #1d4ed8;
+            font-size: 0.82rem;
+            font-weight: 800;
+        }
+
+        .admin-order-status[data-status="delivered"] {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .admin-order-status[data-status="cancelled"] {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .admin-order-status[data-status="delivering"] {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .admin-order-details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+
+            @media (min-width: 560px) {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        .admin-order-detail-value {
+            display: block;
+            overflow-wrap: anywhere;
+            color: var(--auth-form-title-color);
+            font-size: 0.96rem;
+        }
+
+        .admin-order-products {
+            h3 {
+                margin: 0 0 10px;
+                color: var(--auth-form-title-color);
+                font-size: 1rem;
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            li {
+                display: flex;
+                justify-content: space-between;
+                gap: 16px;
+                padding: 11px 0;
+                border-top: 1px solid rgba(148, 163, 184, 0.2);
+                font-size: 0.94rem;
+            }
+        }
+
+        .admin-order-product-name {
+            overflow-wrap: anywhere;
+            color: var(--auth-form-title-color);
+        }
+
+        .admin-order-product-quantity {
+            flex-shrink: 0;
+            color: var(--auth-form-label-color);
+            text-align: right;
+        }
+
+        .admin-order-total {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(148, 163, 184, 0.25);
+            color: var(--auth-form-title-color);
+
+            strong {
+                white-space: nowrap;
+                font-size: 1.1rem;
+            }
+        }
+
+        .admin-order-form {
+            display: grid;
+            gap: 9px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(148, 163, 184, 0.25);
+
+            label {
+                color: var(--auth-form-label-color);
+                font-size: 0.85rem;
+                font-weight: 700;
+            }
+        }
+
+        .admin-order-form-controls {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+
+            @media (min-width: 520px) {
+                grid-template-columns: minmax(0, 1fr) auto;
+            }
+
+            select {
+                width: 100%;
+                min-height: 46px;
+                padding: 0 13px;
+                border: var(--auth-form-input-border);
+                border-radius: 10px;
+                background: var(--auth-form-input-bg);
+                color: var(--auth-form-input-color);
+                font: inherit;
+
+                &:focus {
+                    outline: none;
+                    border-color: var(--auth-form-input-focus-border-color);
+                    box-shadow: var(--auth-form-input-focus-box-shadow);
+                }
+            }
+
+            button {
+                min-height: 46px;
+                padding: 0 18px;
+                border: 0;
+                border-radius: 10px;
+                background: linear-gradient(135deg, #2563eb, #1d4ed8);
+                color: #fff;
+                font: inherit;
+                font-weight: 700;
+                cursor: pointer;
+                transition: filter 0.18s ease, transform 0.18s ease;
+
+                &:hover {
+                    filter: brightness(1.08);
+                    transform: translateY(-1px);
+                }
+
+                &:focus-visible {
+                    outline: 3px solid rgba(37, 99, 235, 0.35);
+                    outline-offset: 2px;
+                }
+            }
+        }
+
+        .admin-orders-empty {
+            grid-column: 1 / -1;
+            padding: 42px 20px;
+            border: 1px dashed rgba(148, 163, 184, 0.55);
+            border-radius: 18px;
+            background: var(--auth-container-bg);
+            text-align: center;
+
+            > span {
+                color: #2563eb;
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                margin: 12px 0 6px;
+                color: var(--auth-form-title-color);
+                font-size: 1.25rem;
+            }
+
+            p {
+                margin: 0;
+                color: var(--auth-form-label-color);
+                font-size: 0.95rem;
+                text-align: center;
+            }
+        }
+    }
+}

@@ -1,0 +1,93 @@
+main {
+/* Lietotāja pasūtījumu saraksta stili */
+    .orders-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+
+        @media (min-width: 640px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+    }
+
+    .order-card {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 22px;
+        border: var(--auth-container-border);
+        border-radius: 16px;
+        background: var(--auth-container-bg);
+        box-shadow: var(--auth-container-box-shadow);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(17, 24, 39, 0.14);
+        }
+
+        .order-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        h2 {
+            margin: 0;
+            color: var(--auth-form-title-color);
+            font-size: 1.15rem;
+        }
+
+        p {
+            margin: 0;
+            color: var(--auth-form-label-color);
+            font-size: 0.95rem;
+        }
+
+        .order-status {
+            flex-shrink: 0;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(148, 163, 184, 0.25);
+            color: var(--auth-form-title-color);
+
+            span {
+                font-weight: 700;
+                white-space: nowrap;
+            }
+        }
+
+        .order-card-link {
+            align-self: flex-start;
+            margin-top: auto;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: #2563eb;
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background: #1d4ed8;
+            }
+        }
+    }
+}

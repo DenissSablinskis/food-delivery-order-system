@@ -1,0 +1,266 @@
+/* Pamatstils */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    width: 100%;
+    background-color: var(--bg);
+}
+
+/* Galvenes stils */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    background-color: var(--bg);
+
+    /* Logo stils */
+    .logo {
+    font-size: 22px;
+    font-family: sans-serif;
+    color: var(--color);
+    margin-left: 20px;
+    @media (min-width: 580px){
+        display:none;
+    }
+    }
+
+    /* Burgera izvēlnes stils */
+    .burger-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+
+        span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background-color: var(--color);
+            transition: all 0.3s ease;
+        }
+
+        /* Burgera parveršana par krustiņu */
+        &.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        &.open span:nth-child(2) {
+            opacity: 0;
+        }
+        &.open span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        @media (min-width: 580px){
+            display:none;
+        }
+
+
+    }
+
+    /* Izvēlnes stils */
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        display: none; 
+
+        @media (min-width: 580px){
+            display: flex;
+            position: relative;
+            box-shadow: none;
+        }
+
+        &.open {
+            display: flex;
+            flex-direction: column;
+        }
+
+        a,
+        form button {
+            display: block;
+            padding: 14px 16px;
+            border: 0;
+            background: transparent;
+            color: #0076ce;
+            text-decoration: none;
+            font-family: sans-serif;
+            font-size: 16px;
+            text-align: left;
+            cursor: pointer;
+            border-bottom: 1px solid #e0e0e0;
+            white-space: nowrap;
+
+            @media (min-width: 580px){
+                padding: 10px 8px;
+                font-size: 15px;
+            }
+
+            @media (min-width: 580px) and (max-width: 700px){
+                padding: 8px 5px;
+                font-size: 14px;
+            }
+
+            @media (min-width: 580px){
+                border: 0;
+            }
+          
+        }
+
+        a.active-link {
+            color: var(--menu-link-color-active);
+            background-color: var(--menu-link-active-color-bg);
+        }
+
+        .cart-link {
+            @media (min-width: 580px){
+                display: none;
+            }
+        }
+    } 
+
+    .cart-icon-link{
+        display: none;
+        @media (min-width: 580px){
+            display: block;
+            margin-right: 20px;
+        }
+        color: var(--color);
+        font-size: 1.5rem;
+        line-height: 1;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: #3b82f6;
+        }
+    }
+    
+    .langAndTheme {
+
+        display: flex;
+
+        /* Valodas izvēlnes stils */
+        .language-switcher{
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-right: 7px;
+            form{
+                /* Lai forma aizņēmtu tikai pogas platumu */
+                display: inline-flex;
+                margin: 0;
+                padding: 0;
+            }
+            .lang-divider{
+                color: var(--color);
+                font-size: 16px;
+                line-height: 1;
+            }
+            .toggleLanguage {
+                background-color: var(--bg);
+                color: var(--color);
+                border: none;
+                cursor: pointer;
+                padding: 2px 4px;
+                font-weight: 500;
+                &.active {
+                    background-color: gray;
+                }
+            }
+        }
+      
+        /* Tēmas pārslēgšanas pogas stils */
+        #themeToggle {
+            border: none;
+            background-image: var(--theme-icon);
+            background-size: 25px 25px;
+            height: 25px;
+            width: 25px;
+        }
+    }
+}
+
+/* Galvenā satura stils */
+main {
+    color: var(--color);
+    flex: 1;
+    padding: 20px;
+
+    &.admin-orders-main {
+        background: #f8fafc;
+        color: #333;
+        --auth-container-bg: #ffffff;
+        --auth-container-border: 1px solid #e8edf4;
+        --auth-container-box-shadow: 0 20px 50px rgba(17, 24, 39, 0.08);
+        --auth-form-label-color: #334155;
+        --auth-form-input-bg: #f8fafc;
+        --auth-form-input-border: 1px solid #d8e0ea;
+        --auth-form-input-color: #0f172a;
+        --auth-form-input-focus-border-color: #2563eb;
+        --auth-form-input-focus-box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        --auth-form-title-color: #111827;
+    }
+
+    @media (min-width: 580px){
+        max-width: 900px;
+        margin: 0 auto;
+        &.products-main {
+            width: 100%;
+            max-width: 1500px;
+        }
+        &.orders-main {
+            width: 100%;
+            max-width: 1200px;
+        }
+        &.profile-main {
+            width: 100%;
+            max-width: 760px;
+        }
+        &.admin-orders-main {
+            width: 100%;
+            max-width: 1440px;
+        }
+    }
+    
+    h1 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        @media (min-width: 580px){
+            font-size: 3rem;
+        }
+    }
+    
+    p {
+        text-align: justify;
+        margin-bottom: 50px;
+        @media (min-width: 580px){
+            font-size: 1.5rem;
+        }
+    }
+
+    
+}
+
+/* Kājene stils */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border-top: 1px solid #ccc ;
+    font-weight: bold;
+    background-color: var(--bg);
+    color: var(--color)
+}
