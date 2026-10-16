@@ -3,8 +3,14 @@
 @section('content')
 
     @if (session('success'))
-        <div class="profile-success-message" role="status">
+        <div class="admin-success-message" role="status">
             {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="admin-error-message" role="status">
+            {{ session('error') }}
         </div>
     @endif
 
