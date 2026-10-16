@@ -38,6 +38,7 @@ class OrderController extends Controller
         $pdf = Pdf::loadView('pages.orders.invoice', [
             'order' => $order,
             'total' => $total,
+            'invoiceCss' => file_get_contents(resource_path('css/invoice.css')),
         ]);
 
         // Atgriež PDF lejupielādei ar nosaukumu "invoice-{order_id}.pdf"
