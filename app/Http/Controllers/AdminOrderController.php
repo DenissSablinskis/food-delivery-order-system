@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Http\Requests\UpdateOrderStatusRequest;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\UpdateOrderAddressRequest;
 
 class AdminOrderController extends Controller
 {
@@ -77,10 +78,7 @@ class AdminOrderController extends Controller
 
                 }
 
-                $order->update([
-                    'status' => $data['status'],
-                ]);
-
+                $order->update(['status' => $data['status'],]);
 
                 return redirect()->route('admin.orders.index')->with('success', $message);
             });
@@ -89,5 +87,15 @@ class AdminOrderController extends Controller
 
             return redirect()->route('admin.orders.index')->with('error', $e->getMessage());
         }
+    }
+
+    public function updateAddress(Order $order, UpdateOrderAddressRequest $request) {
+
+        $data = $request->validated();
+
+        $order->update(['delivery_address' => $data['delivery_address']]);
+
+        return redirect()->route('admin.orders.index')->with('success', 'Adrese veiksmīgi nomainīta!');
+
     }
 }
