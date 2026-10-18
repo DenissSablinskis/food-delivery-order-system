@@ -63,14 +63,24 @@
                                     {{ $orderedProduct->product_count }} × {{ number_format($orderedProduct->unit_price_at_purchase, 2, ',', ' ') }} €
                                 </span>
 
-                                <!-- Daudzuma palielinašana -->
+                                <span class="admin-order-product-quantity-actions">
 
-                                <span class="admin-order-product-increase-amount">
-                                    <form method='post' action="{{ route('admin.orders.increase-product-quantity', [$order, $orderedProduct]) }}">
+                                    <!-- Daudzuma samazinašana -->
+
+                                    <form method="post" action="{{ route('admin.orders.decrease-product-quantity', [$order, $orderedProduct]) }}">
                                         @csrf
                                         @method('PATCH')
-                                        <button type='submit'>+</button>
+                                        <button type="submit" aria-label="Samazināt daudzumu" @disabled($order->status === 'delivered' || $order->status === 'cancelled' || $orderedProduct->product_count === 1)>−</button>
                                     </form>
+
+                                    <!-- Daudzuma palielinašana -->
+
+                                    <form method="post" action="{{ route('admin.orders.increase-product-quantity', [$order, $orderedProduct]) }}">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" aria-label="Palielināt daudzumu" @disabled($order->status === 'delivered' || $order->status === 'cancelled')>+</button>
+                                    </form>
+                                    
                                 </span>
 
                             </li>

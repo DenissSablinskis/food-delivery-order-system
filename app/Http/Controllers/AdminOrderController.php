@@ -154,6 +154,40 @@ class AdminOrderController extends Controller
 
     public function decreaseProductQuantity(Order $order, OrderedProduct $orderedProduct) {
 
+        if (!$order->orderedProducts()->where('id', $orderedProduct->id)->exists()) {
+            abort(404);
+        } 
+
+        try {
+
+            DB::transaction(function () use ($order, $orderedProduct) {
+
+                $order = Order::where('id', $order->id)->lockForUpdate()->firstOrFail();
+                $orderedProduct = OrderedProduct::where('id', $orderedProduct->id)->where('order_id', $order->id)->lockForUpdate()->firstOrFail();
+                $product = Product::where('id', $orderedProduct->product->id)->lockForUpdate()->firstOrFail();
+
+                if ($order->status === 'delivered' || $order->status === 'cancelled') {
+                    throw new \RuntimeException('Šis pasūtījums ir piegādāts vai atcelts! Mainīt preču daudzumu nav iespējams!');
+                }
+              
+                if ($orderedProduct->product_count > 1) {
+                    $product->increment('stock_quantity', 1);
+                    $orderedProduct->decrement('product_count', 1);
+                }  else {
+                    throw new \RuntimeException('Produkta daudzums pasūtījumā nevar būt mazāks par 1!');
+                }
+
+            });
+
+        } catch (\RuntimeException $e) {
+
+            return redirect()->route('admin.orders.index')->with('error', $e->getMessage());
+
+        } 
+
+        return redirect()->route('admin.orders.index')->with('success', 'Produkta daudzums veiksmīgi nomainīts!');
     }
+
 }
+
 
