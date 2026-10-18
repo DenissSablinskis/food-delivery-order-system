@@ -80,7 +80,17 @@
                                         @method('PATCH')
                                         <button type="submit" aria-label="Palielināt daudzumu" @disabled($order->status === 'delivered' || $order->status === 'cancelled')>+</button>
                                     </form>
-                                    
+
+                                    <!-- Produkta dzēšana -->
+
+                                    <form method="post" action="{{ route('admin.orders.delete-product', [$order, $orderedProduct]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="admin-order-product-delete-button" aria-label="Dzēst produktu">
+                                            <span class="bi bi-trash3" aria-hidden="true"></span>
+                                        </button>
+                                    </form>
+
                                 </span>
 
                             </li>

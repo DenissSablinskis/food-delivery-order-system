@@ -188,6 +188,43 @@ class AdminOrderController extends Controller
         return redirect()->route('admin.orders.index')->with('success', 'Produkta daudzums veiksmīgi nomainīts!');
     }
 
+    public function deleteProduct(Order $order, OrderedProduct $orderedProduct) {
+
+        if (!$order->orderedProducts()->where('id', $orderedProduct->id)->exists()) {
+            abort(404);
+        } 
+
+        try {
+
+            DB::transaction(function () use ($order, $orderedProduct) {
+
+                $order = Order::where('id', $order->id)->lockForUpdate()->firstOrFail();
+                $orderedProduct = OrderedProduct::where('id', $orderedProduct->id)->where('order_id', $order->id)->lockForUpdate()->firstOrFail();
+                $product = Product::where('id', $orderedProduct->product->id)->lockForUpdate()->firstOrFail();
+
+                if ($order->status === 'delivered' || $order->status === 'cancelled') {
+                    throw new \RuntimeException('Šis pasūtījums ir piegādāts vai atcelts! Dzēst preci šajā pasūtījuma nav iespējams!');
+                }
+
+                if ($order->orderedProducts()->count() === 1) {
+                    throw new \RuntimeException('Nav iespējams dzest pēdējo prēci pasūtījumā!');
+                }
+              
+                $product->increment('stock_quantity', $orderedProduct->product_count);
+                $orderedProduct->delete();
+              
+            });
+
+        } catch (\RuntimeException $e) {
+
+            return redirect()->route('admin.orders.index')->with('error', $e->getMessage());
+
+        } 
+
+        return redirect()->route('admin.orders.index')->with('success', 'Produkts ir veiksmīgi nodzests!');
+
+    }
+
 }
 
 
