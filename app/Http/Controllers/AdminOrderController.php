@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\OrderedProduct;
 use App\Http\Requests\UpdateOrderStatusRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateOrderAddressRequest;
@@ -98,4 +100,60 @@ class AdminOrderController extends Controller
         return redirect()->route('admin.orders.index')->with('success', 'Adrese veiksmīgi nomainīta!');
 
     }
+
+    public function increaseProductQuantity(Order $order, OrderedProduct $orderedProduct) {
+       
+        /*
+        * Tiek pārbaudīts, vai objekts $orderedProduct,
+        * kura daudzums tiek mainīts, pieder pasūtījumam $order.
+        *
+        * Metode where() meklē pasūtījuma $order saistītajās
+        * orderedProducts pozīcijās ierakstu, kura id sakrīt
+        * ar objekta $orderedProduct id.
+        *
+        * Ja ieraksts eksistē, metode exists() atgriež true,
+        * pretējā gadījumā — false.
+        */
+
+        if (!$order->orderedProducts()->where('id', $orderedProduct->id)->exists()) {
+            abort(404);
+        } 
+
+        try {
+
+            DB::transaction(function () use ($order, $orderedProduct) {
+
+                // Pasūtījuma, pasūtījuma pozīcijas un produkta ierakstu bloķēšana uz transakcijas izpildes laiku,
+                // lai novērstu konfliktus starp paralēli izpildītiem vaicājumiem.
+
+                $order = Order::where('id', $order->id)->lockForUpdate()->firstOrFail();
+                $orderedProduct = OrderedProduct::where('id', $orderedProduct->id)->where('order_id', $order->id)->lockForUpdate()->firstOrFail();
+                $product = Product::where('id', $orderedProduct->product->id)->lockForUpdate()->firstOrFail();
+
+                if ($order->status === 'delivered' || $order->status === 'cancelled') {
+                    throw new \RuntimeException('Šis pasūtījums ir piegādāts vai atcelts! Mainīt preču daudzumu nav iespējams!');
+                }
+              
+                if ($product->stock_quantity > 0) {
+                    $product->decrement('stock_quantity', 1);
+                    $orderedProduct->increment('product_count', 1);
+                }  else {
+                    throw new \RuntimeException('Šī produkta daudzums noliktavā nav pietiekams!');
+                }
+
+            });
+
+        } catch (\RuntimeException $e) {
+
+            return redirect()->route('admin.orders.index')->with('error', $e->getMessage());
+
+        } 
+
+        return redirect()->route('admin.orders.index')->with('success', 'Produkta daudzums veiksmīgi nomainīts!');
+    }
+
+    public function decreaseProductQuantity(Order $order, OrderedProduct $orderedProduct) {
+
+    }
 }
+

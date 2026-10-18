@@ -51,6 +51,8 @@
                     </div>
                 </div>
 
+                <!-- Pasūtīto produktu maiņa -->
+
                 <div class="admin-order-products">
                     <h3>Pasūtītās preces</h3>
                     <ul>
@@ -60,6 +62,17 @@
                                 <span class="admin-order-product-quantity">
                                     {{ $orderedProduct->product_count }} × {{ number_format($orderedProduct->unit_price_at_purchase, 2, ',', ' ') }} €
                                 </span>
+
+                                <!-- Daudzuma palielinašana -->
+
+                                <span class="admin-order-product-increase-amount">
+                                    <form method='post' action="{{ route('admin.orders.increase-product-quantity', [$order, $orderedProduct]) }}">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type='submit'>+</button>
+                                    </form>
+                                </span>
+
                             </li>
                         @endforeach
                     </ul>

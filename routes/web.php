@@ -92,7 +92,9 @@ Route::middleware(['auth', 'role:admin'])
         Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
         Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.update-status');
         Route::patch('/orders/{order}/address', [AdminOrderController::class, 'updateAddress'])->name('orders.update-address');
-
+        Route::patch('/orders/{order}/products/{orderedProduct}/increase', [AdminOrderController::class, 'increaseProductQuantity'])->name('orders.increase-product-quantity');
+        Route::patch('/orders/{order}/products/{orderedProduct}/decrease', [AdminOrderController::class, 'decreaseProductQuantity'])->name('orders.decrease-product-quantity');
+        Route::delete('/orders/{order}/products/{orderedProduct}', [AdminOrderController::class, 'deleteProduct'])->name('orders.delete-product');
         
     });
 
