@@ -86,7 +86,7 @@
                                     <form method="post" action="{{ route('admin.orders.delete-product', [$order, $orderedProduct]) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="admin-order-product-delete-button" aria-label="Dzēst produktu">
+                                        <button type="submit" class="admin-order-product-delete-button" aria-label="Dzēst produktu" @disabled($order->status === 'delivered' || $order->status === 'cancelled' || $order->orderedProducts->count() === 1)>
                                             <span class="bi bi-trash3" aria-hidden="true"></span>
                                         </button>
                                     </form>
@@ -102,6 +102,33 @@
                     <span>Kopējā summa</span>
                     <strong>{{ number_format($order->total, 2, ',', ' ') }} €</strong>
                 </div>
+
+                <!-- Produkta pievienošana -->
+
+                <form class="admin-order-form admin-order-add-product-form" method="POST" action="{{ route('admin.orders.add-product', $order) }}">
+                    @csrf
+
+                    <label for="order-products-{{ $order->id }}">Pievienot produktu</label>
+                    <div class="admin-order-add-product-controls">
+                        <select id="order-products-{{ $order->id }}" name="product_id" @disabled($order->status === 'delivered' || $order->status === 'cancelled' || $products->isEmpty())>
+                            @foreach ($products as $product)
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            @endforeach
+                        </select>
+
+                        <button type="submit" @disabled($order->status === 'delivered' || $order->status === 'cancelled' || $products->isEmpty())>
+                            <span class="bi bi-plus-lg" aria-hidden="true"></span>
+                            Pievienot
+                        </button>
+                    </div>
+
+                    @if ($order->status === 'delivered' || $order->status === 'cancelled')
+                        <p class="admin-order-add-product-hint">Šim pasūtījumam vairs nevar pievienot preces.</p>
+                    @elseif ($products->isEmpty())
+                        <p class="admin-order-add-product-hint">Nav pieejamu produktu, ko pievienot.</p>
+                    @endif
+                    
+                </form>
 
                 <!-- Pasūtījuma piegādes adreses maiņa -->
 

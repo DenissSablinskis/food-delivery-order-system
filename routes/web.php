@@ -95,6 +95,7 @@ Route::middleware(['auth', 'role:admin'])
         Route::patch('/orders/{order}/products/{orderedProduct}/increase', [AdminOrderController::class, 'increaseProductQuantity'])->name('orders.increase-product-quantity');
         Route::patch('/orders/{order}/products/{orderedProduct}/decrease', [AdminOrderController::class, 'decreaseProductQuantity'])->name('orders.decrease-product-quantity');
         Route::delete('/orders/{order}/products/{orderedProduct}', [AdminOrderController::class, 'deleteProduct'])->name('orders.delete-product');
+        Route::post('/orders/{order}/products', [AdminOrderController::class, 'addProduct'])->name('orders.add-product');
         
     });
 

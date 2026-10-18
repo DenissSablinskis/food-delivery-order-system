@@ -14,6 +14,7 @@ class AdminOrderController extends Controller
 {
     public function index() {
         $orders = Order::with('orderedProducts.product')->get();
+        $products = Product::all();
         foreach ($orders as $order) {
             $total = 0;
             foreach ($order->orderedProducts as $orderedProduct) {
@@ -21,7 +22,7 @@ class AdminOrderController extends Controller
             }
             $order->total = $total;
         }
-        return view('pages.admin.orders.index', compact('orders'));
+        return view('pages.admin.orders.index', compact(['orders', 'products']));
     }
 
     public function updateStatus(Order $order, UpdateOrderStatusRequest $request) {
@@ -222,6 +223,71 @@ class AdminOrderController extends Controller
         } 
 
         return redirect()->route('admin.orders.index')->with('success', 'Produkts ir veiksmīgi nodzests!');
+
+    }
+
+    public function addProduct(Order $order, Request $request) {
+
+        // Parbaudam vai ir saņemts id un vai produkts ar tadu id eksistē
+
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+        ]);
+
+        // Metode find meklē produktu pēc tā id. Tā ir atrāka par metodi first
+
+        $product = Product::findOrFail($request->product_id);
+
+        try {
+
+            DB::transaction(function () use ($order, $product) {
+
+                $order = Order::where('id', $order->id)->lockForUpdate()->firstOrFail();
+                $product = Product::where('id', $product->id)->lockForUpdate()->firstOrFail();
+
+                // Ja pasūtījums ir piegādāts vai atcelts, tam nevar pievienot preces
+
+                if ($order->status === 'delivered' || $order->status === 'cancelled') {
+                    throw new \RuntimeException('Šis pasūtījums ir piegādāts vai atcelts! Pievienot preci nav iespējams!');
+                }
+
+                if ($product->stock_quantity < 1) {
+                    throw new \RuntimeException('Nepietiekams produkta daudzums noliktavā! Pievienot preci nav iespējams!');
+                }
+
+                // Parbaudam vai pievienojama prece jau ir pasūtījumā. Ja ir tad ta daudzums tiek palielināts, 
+                // ja nav tad tiek veidota jauna pasūtījuma pozicija
+
+                $orderedProduct = $order->orderedProducts()->where('product_id', $product->id)->lockForUpdate()->first();
+
+                if ($orderedProduct) {
+
+                    $orderedProduct->increment('product_count', 1);
+
+                    $product->decrement('stock_quantity', 1);
+
+                } else {
+
+                    $orderedProduct = OrderedProduct::create([
+                        'product_id' => $product->id,
+                        'order_id' => $order->id,
+                        'product_count' => 1,
+                        'unit_price_at_purchase' => $product->unit_price,
+                    ]);
+
+                    $product->decrement('stock_quantity', 1);
+
+                }
+              
+            });
+
+        } catch (\RuntimeException $e) {
+
+            return redirect()->route('admin.orders.index')->with('error', $e->getMessage());
+
+        } 
+
+        return redirect()->route('admin.orders.index')->with('success', 'Produkts ir veiksmīgi pievienots!');
 
     }
 
