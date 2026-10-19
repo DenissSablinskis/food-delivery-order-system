@@ -1,0 +1,524 @@
+/* Administratora produktu kataloga un rediģēšanas lapas */
+main.admin-products-main {
+    width: 100%;
+    max-width: 1440px;
+    padding: clamp(16px, 3vw, 32px);
+    background: #f8fafc;
+    color: #334155;
+    --auth-container-bg: #ffffff;
+    --auth-container-border: 1px solid #e8edf4;
+    --auth-container-box-shadow: 0 20px 50px rgba(17, 24, 39, 0.08);
+    --auth-form-label-color: #334155;
+    --auth-form-input-bg: #f8fafc;
+    --auth-form-input-border: 1px solid #d8e0ea;
+    --auth-form-input-color: #0f172a;
+    --auth-form-input-focus-border-color: #2563eb;
+    --auth-form-input-focus-box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    --auth-form-title-color: #111827;
+
+    /* Kopīgais saturs un virsraksts */
+    .admin-products-page {
+        display: grid;
+        width: 100%;
+        gap: 22px;
+        padding: 8px 0 32px;
+    }
+
+    .admin-products-heading {
+        display: grid;
+        width: 100%;
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: stretch;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+
+        > * {
+            justify-self: center;
+        }
+
+        h1 {
+            width: 100%;
+            margin: 0;
+            color: var(--auth-form-title-color);
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            line-height: 1.15;
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+
+        > p {
+            max-width: 42rem;
+            margin: 0;
+            color: var(--auth-form-label-color);
+            font-size: 1rem;
+            text-align: center;
+        }
+    }
+
+    .admin-products-eyebrow {
+        margin: 0;
+        color: #2563eb;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    /* Paziņojumi par veiksmīgām un neizdevušām darbībām */
+    .admin-products-message {
+        padding: 13px 16px;
+        border: 1px solid;
+        border-radius: 12px;
+        font-size: 0.95rem;
+    }
+
+    .admin-products-message-success {
+        border-color: #86efac;
+        background: #f0fdf4;
+        color: #166534;
+    }
+
+    .admin-products-message-error {
+        border-color: #fca5a5;
+        background: #fef2f2;
+        color: #991b1b;
+    }
+
+    /* Kataloga tabula un produktu darbības */
+    .admin-products-table-wrapper {
+        overflow-x: auto;
+        border: var(--auth-container-border);
+        border-radius: 16px;
+        background: var(--auth-container-bg);
+        box-shadow: var(--auth-container-box-shadow);
+    }
+
+    .admin-products-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+
+        th,
+        td {
+            padding: 15px 18px;
+            border-bottom: 1px solid #e8edf4;
+            vertical-align: middle;
+        }
+
+        th {
+            background: #f8fafc;
+            color: #475569;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+    }
+
+    .admin-products-product-cell {
+        display: flex;
+        min-width: 220px;
+        align-items: center;
+        gap: 13px;
+        color: var(--auth-form-title-color);
+        font-weight: 700;
+
+        img {
+            flex: 0 0 56px;
+            width: 56px;
+            height: 56px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #fff;
+            object-fit: cover;
+        }
+    }
+
+    .admin-products-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+
+        form {
+            margin: 0;
+        }
+    }
+
+    .admin-products-edit-action,
+    .admin-products-delete-action {
+        display: inline-flex;
+        min-height: 38px;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        padding: 0 12px;
+        border: 1px solid transparent;
+        border-radius: 9px;
+        font: inherit;
+        font-size: 0.88rem;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+
+        &:hover {
+            transform: translateY(-1px);
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba(37, 99, 235, 0.3);
+            outline-offset: 2px;
+        }
+    }
+
+    .admin-products-edit-action {
+        border-color: #bfdbfe;
+        background: #eff6ff;
+        color: #1d4ed8;
+
+        &:hover {
+            border-color: #93c5fd;
+            background: #dbeafe;
+        }
+    }
+
+    .admin-products-delete-action {
+        border-color: #fecdd3;
+        background: #fff1f2;
+        color: #be123c;
+
+        &:hover {
+            border-color: #e11d48;
+            background: #e11d48;
+            color: #fff;
+        }
+    }
+
+    .admin-products-empty {
+        padding: 36px 20px !important;
+        color: #64748b;
+        text-align: center;
+    }
+
+    /* Produkta izveides un rediģēšanas forma */
+    .admin-product-form {
+        display: grid;
+        width: 100%;
+        max-width: 780px;
+        justify-self: center;
+        gap: 24px;
+        padding: 22px;
+        border: var(--auth-container-border);
+        border-radius: 18px;
+        background: var(--auth-container-bg);
+        box-shadow: var(--auth-container-box-shadow);
+
+        @media (min-width: 640px) {
+            padding: 32px;
+        }
+    }
+
+    .admin-product-image-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e8edf4;
+
+        h2 {
+            margin: 0 0 6px;
+            color: var(--auth-form-title-color);
+            font-size: 1.05rem;
+        }
+
+        p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+    }
+
+    .admin-product-current-image {
+        flex: 0 0 88px;
+        width: 88px;
+        height: 88px;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        background: #fff;
+        object-fit: cover;
+    }
+
+    .admin-product-form-fields {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+
+        @media (min-width: 600px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    .admin-product-field {
+        display: grid;
+        min-width: 0;
+        align-content: start;
+        gap: 8px;
+
+        label {
+            color: var(--auth-form-label-color);
+            font-size: 0.84rem;
+            font-weight: 700;
+        }
+
+        input {
+            width: 100%;
+            min-height: 46px;
+            padding: 10px 13px;
+            border: var(--auth-form-input-border);
+            border-radius: 10px;
+            background: var(--auth-form-input-bg);
+            color: var(--auth-form-input-color);
+            font: inherit;
+            transition: border-color 0.18s ease, box-shadow 0.18s ease;
+
+            &:focus {
+                outline: none;
+                border-color: var(--auth-form-input-focus-border-color);
+                box-shadow: var(--auth-form-input-focus-box-shadow);
+            }
+
+            &[type="file"] {
+                padding: 7px;
+                font-size: 0.88rem;
+            }
+
+            &::file-selector-button {
+                margin-right: 12px;
+                padding: 7px 11px;
+                border: 0;
+                border-radius: 7px;
+                background: #dbeafe;
+                color: #1d4ed8;
+                font: inherit;
+                font-weight: 700;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .admin-product-field-full {
+        grid-column: 1 / -1;
+    }
+
+    .admin-product-field-error {
+        margin: 0;
+        color: #b91c1c;
+        font-size: 0.84rem;
+        text-align: left;
+    }
+
+    .admin-product-form-actions {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+        padding-top: 18px;
+        border-top: 1px solid #e8edf4;
+
+        @media (min-width: 480px) {
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+    }
+
+    /* Galvenās un atgriešanās darbības */
+    .admin-product-primary-action,
+    .admin-product-secondary-action {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 17px;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        font: inherit;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: filter 0.18s ease, transform 0.18s ease, background 0.18s ease;
+
+        &:hover {
+            transform: translateY(-1px);
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba(37, 99, 235, 0.32);
+            outline-offset: 2px;
+        }
+    }
+
+    .admin-product-primary-action {
+        border: 0;
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        box-shadow: 0 5px 12px rgba(37, 99, 235, 0.2);
+        color: #fff;
+
+        &:hover {
+            filter: brightness(1.08);
+        }
+    }
+
+    .admin-product-secondary-action {
+        border-color: #cbd5e1;
+        background: #fff;
+        color: #475569;
+
+        &:hover {
+            background: #f1f5f9;
+        }
+    }
+
+    .admin-products-heading > .admin-product-primary-action {
+        margin-top: 6px;
+    }
+
+    /* Pārvērš kataloga tabulu kompaktās kartītēs šauriem ekrāniem */
+    @media (max-width: 900px) {
+        .admin-products-table-wrapper {
+            overflow: visible;
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .admin-products-table {
+            display: block;
+
+            thead {
+                display: none;
+            }
+
+            tbody {
+                display: grid;
+                gap: 12px;
+            }
+
+            tr {
+                display: grid;
+                width: 100%;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px 14px;
+                padding: 10px 14px;
+                border: 1px solid #e2e8f0;
+                border-radius: 14px;
+                background: #fff;
+                box-shadow: 0 5px 16px rgba(17, 24, 39, 0.05);
+            }
+
+            td {
+                min-width: 0;
+                padding: 8px 2px;
+                border: 0;
+                overflow-wrap: anywhere;
+            }
+
+            tbody tr:hover {
+                background: #fff;
+            }
+        }
+
+        .admin-products-product-cell {
+            grid-column: 1 / -1;
+            min-width: 0;
+            padding-bottom: 11px !important;
+            border-bottom: 1px solid #e8edf4 !important;
+
+            img {
+                flex-basis: 48px;
+                width: 48px;
+                height: 48px;
+            }
+        }
+
+        .admin-products-table td[data-label] {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            color: #334155;
+            font-size: 0.9rem;
+
+            &::before {
+                content: attr(data-label);
+                color: #64748b;
+                font-size: 0.68rem;
+                font-weight: 800;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+            }
+        }
+
+        .admin-products-table .admin-products-action-cell {
+            grid-column: 1 / -1;
+            padding-top: 10px;
+            border-top: 1px solid #e8edf4;
+        }
+
+        .admin-products-actions {
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .admin-products-empty {
+            grid-column: 1 / -1;
+            text-align: center !important;
+
+            &::before {
+                content: none !important;
+            }
+        }
+    }
+
+    @media (max-width: 420px) {
+        .admin-product-form {
+            gap: 20px;
+            padding: 18px 14px;
+            border-radius: 14px;
+        }
+
+        .admin-product-image-section {
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .admin-product-current-image {
+            flex-basis: 64px;
+            width: 64px;
+            height: 64px;
+        }
+
+        .admin-products-actions {
+            gap: 7px;
+        }
+
+        .admin-products-edit-action,
+        .admin-products-delete-action {
+            min-height: 36px;
+            padding: 0 10px;
+            font-size: 0.82rem;
+        }
+    }
+}

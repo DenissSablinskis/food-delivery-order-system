@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminOrderController;
+use App\Http\Controllers\AdminProductController;
 
 Route::get('/', function () {
     return view('pages.home');
@@ -89,6 +90,9 @@ Route::middleware(['auth', 'role:admin'])
     ->group(function () {
 
         Route::get('/', [AdminController::class, 'index'])->name('index');
+
+        // Pasūtījumu administrēšana
+
         Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
         Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.update-status');
         Route::patch('/orders/{order}/address', [AdminOrderController::class, 'updateAddress'])->name('orders.update-address');
@@ -96,6 +100,15 @@ Route::middleware(['auth', 'role:admin'])
         Route::patch('/orders/{order}/products/{orderedProduct}/decrease', [AdminOrderController::class, 'decreaseProductQuantity'])->name('orders.decrease-product-quantity');
         Route::delete('/orders/{order}/products/{orderedProduct}', [AdminOrderController::class, 'deleteProduct'])->name('orders.delete-product');
         Route::post('/orders/{order}/products', [AdminOrderController::class, 'addProduct'])->name('orders.add-product');
+
+        // Produktu administrēšana
+
+        Route::get('/products', [AdminProductController::class, 'index'])->name('products.index');
+        Route::get('/products/{product}/edit', [AdminProductController::class, 'edit'])->name('products.edit');
+        Route::patch('/products/{product}', [AdminProductController::class, 'update'])->name('products.update');
+        Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])->name('products.destroy');
+        Route::get('/products/create', [AdminProductController::class, 'create'])->name('products.create');
+        Route::post('/products', [AdminProductController::class, 'store'])->name('products.store');
         
     });
 
