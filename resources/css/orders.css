@@ -1,5 +1,6 @@
 main {
-/* Lietotāja pasūtījumu saraksta stili */
+/* Lietotāja pasūtījumu saraksts un kartītes */
+    /* Responsīvs pasūtījumu kartīšu režģis */
     .orders-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -15,6 +16,7 @@ main {
         }
     }
 
+    /* Pasūtījuma kartīte ar statusu, kopsavilkumu un saiti */
     .order-card {
         display: flex;
         flex-direction: column;

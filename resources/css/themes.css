@@ -47,6 +47,7 @@
     --product-card-button-bg: linear-gradient(135deg, #3b82f6, #2563eb);
     --product-quantity-input-border-color: #4b5563;
 
+    /* Produktu kartīšu tumšās krāsu un ievades lauku korekcijas */
     .product-card {
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
         .product-name {
@@ -70,6 +71,7 @@
         }
     }
 
+    /* Pasūtījuma apstiprinājuma kartītes tumšais noformējums */
     .order-confirmation {
         border-color: #374151;
         background: #111827;

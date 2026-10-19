@@ -1,5 +1,5 @@
+/* Autorizācijas un reģistrācijas lapu izkārtojums */
 main {
-/* Autorizēšanas un reģistrācijas lapu stili */
     .auth-container {
         width: 100%;
         max-width: 430px;
@@ -34,6 +34,7 @@ main {
 
     }
 
+    /* Veidlapas konteiners, ievades lauki un virsraksts */
     .auth-form-wrapper {
         width: 100%;
         padding: 30px 24px;
@@ -92,6 +93,7 @@ main {
         margin-bottom: 16px;
     }
 
+    /* Veidlapas iesniegšana, kļūdu ziņojumi un pāreja uz citu lapu */
     .submit-btn {
         width: 100%;
         height: 50px;

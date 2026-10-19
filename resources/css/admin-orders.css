@@ -1,5 +1,5 @@
 main {
-/* Administratora pasūtījumu pārvaldības lapas stili */
+/* Administratora pasūtījumu pārvaldības lapa */
     .admin-orders-page {
         display: grid;
         grid-template-columns: 1fr;
@@ -84,6 +84,7 @@ main {
             }
         }
 
+        /* Pasūtījuma galvene, statuss un klienta pamatinformācija */
         .admin-order-header {
             display: flex;
             align-items: center;
@@ -154,6 +155,7 @@ main {
             font-size: 0.96rem;
         }
 
+        /* Pasūtījuma adreses maiņas forma */
         .admin-order-address {
             padding: 13px 15px;
             border: 1px solid #dbeafe;
@@ -230,6 +232,7 @@ main {
             }
         }
 
+        /* Pasūtījuma preču saraksts un daudzuma vadīklas */
         .admin-order-products {
             h3 {
                 margin: 0 0 10px;
@@ -359,6 +362,7 @@ main {
             }
         }
 
+        /* Pasūtījuma preču un statusa rediģēšanas formas */
         .admin-order-form {
             display: grid;
             gap: 9px;
@@ -545,6 +549,7 @@ main {
             }
         }
 
+        /* Tukšā stāvokļa paziņojums, ja pasūtījumu nav */
         .admin-orders-empty {
             grid-column: 1 / -1;
             padding: 42px 20px;

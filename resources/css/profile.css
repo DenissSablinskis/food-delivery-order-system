@@ -1,5 +1,6 @@
 main {
-/* Lietotāja profila lapas stili */
+/* Lietotāja profila un konta informācijas lapu stili */
+    /* Profila informācijas kartīte */
     .profile-card {
         width: 100%;
         margin: 28px auto;
@@ -119,7 +120,7 @@ main {
         }
     }
 
-    /* Profila rediģēšanas formas stili */
+    /* Profila datu rediģēšanas forma */
     .profile-edit-form {
         display: grid;
         gap: 20px;
@@ -197,7 +198,7 @@ main {
         }
     }
 
-    /* Par uzņēmumu lapas attēla stili */
+    /* Attēls uzņēmuma informācijas lapā */
     .about-image-wrapper {
         display: block;
         width: 100%;

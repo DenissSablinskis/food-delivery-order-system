@@ -1,5 +1,5 @@
 main {
-/* Produktu kartiņu stili */
+/* Produktu kataloga kartītes un izvietojums */
 
     .products{
         .product-card {
@@ -52,6 +52,7 @@ main {
                     box-shadow: 0 12px 28px rgba(37, 99, 235, 0.34);
                 }
             }
+            /* Daudzuma ievade bez pārlūka skaitītāja bultiņām */
             .quantity-input {
                 border: 1px solid var(--product-quantity-input-border-color);
                 border-radius: 10px;
@@ -67,6 +68,7 @@ main {
                 margin: 0;
             }
         }
+        /* Kataloga kolonnu skaits dažādos ekrāna platumos */
         @media (min-width: 580px) {
             display: grid;
             grid-template-columns: repeat(2, 1fr);

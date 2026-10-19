@@ -1,3 +1,4 @@
+/* Norēķinu paneļa un galvenes izkārtojums */
 .checkout {
     width: min(100% - 32px, 1100px);
     margin: 40px auto 64px;
@@ -60,6 +61,7 @@
     background: rgba(59, 130, 246, 0.02);
 }
 
+/* Klienta un piegādes datu ievades lauki */
 .userGrid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -116,6 +118,7 @@
     box-shadow: var(--auth-form-input-focus-box-shadow);
 }
 
+/* Pasūtīto preču kopsavilkums un kopējā summa */
 .sectionTitle {
     margin: 0 0 18px;
     color: var(--auth-form-title-color);
@@ -178,6 +181,7 @@
     font-size: 1.4rem;
 }
 
+/* Pasūtījuma apstiprināšanas poga */
 .confirmButton {
     display: inline-flex;
     align-items: center;
@@ -200,6 +204,7 @@
     transform: translateY(-1px);
 }
 
+/* Kolonnu izkārtojuma pielāgošana šaurākiem ekrāniem */
 @media (max-width: 760px) {
     .content {
         grid-template-columns: 1fr;

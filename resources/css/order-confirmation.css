@@ -1,5 +1,5 @@
 main {
-/* Pasūtījumu apstiprināšanas lapas stils */
+/* Pasūtījuma apstiprinājuma kopsavilkums */
 
     .order-confirmation {
         width: auto;
@@ -31,6 +31,7 @@ main {
             font-size: 1.25rem;
         }
 
+        /* Pircēja un pasūtījuma informācija, preces un kopējā summa */
         .order-info {
             padding-bottom: 16px;
             border-bottom: 1px solid #e5e7eb;
@@ -80,6 +81,7 @@ main {
             }
         }
 
+        /* Pieejamās darbības pēc pasūtījuma noformēšanas */
         .order-actions {
             margin-top: 24px;
 

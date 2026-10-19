@@ -1,3 +1,4 @@
+/* Drukājamā rēķina pamatizkārtojums un tipogrāfija */
 * {
     box-sizing: border-box;
 }
@@ -42,6 +43,7 @@ h2 {
     font-size: 1.25rem;
 }
 
+/* Rēķina preču rindas un summas izkārtojums */
 h2 + div > div {
     display: table;
     width: 100%;
@@ -77,6 +79,7 @@ h2 + div + div strong:last-child {
     text-align: right;
 }
 
+/* Drukas režīma pielāgojumi */
 @media print {
     body {
         padding: 0;

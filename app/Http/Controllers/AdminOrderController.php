@@ -27,26 +27,35 @@ class AdminOrderController extends Controller
 
     public function updateStatus(Order $order, UpdateOrderStatusRequest $request) {
 
-        // Ja pasūtījums jau ir piegādāts, tā statusu vairs nevar mainīt.
-
-        if ($order->status === 'delivered') {
-            return redirect()->route('admin.orders.index')->with('error', 'Šī pasūtījuma statusu vairs nevar mainīt!');
-        }
-
-        $data = $request->validated();
-
-        // Ja pasūtījums jau ir atcelts, to nevar atcelt atkārtoti.
-
-        if ($order->status === 'cancelled' && $data['status'] === 'cancelled') {
-            return redirect()->route('admin.orders.index')->with('error', 'Šis pasūtījums jau ir atcelts!');
-        }
-
         try {
 
             /* DB::transaction() nodrošina operāciju atomaritāti: ja kāda operācija neizdodas, 
             visas transakcijas laikā veiktās datubāzes izmaiņas tiek atceltas. */
 
-            return DB::transaction(function () use ($order, $data) {
+            return DB::transaction(function () use ($order, $request) {
+
+                $order = Order::lockForUpdate()->findOrFail($order->id); // findOrFail tiek izmantots, jo pasūtījums tiek meklēts pēc primārās atslēgas (id).
+
+                // Ja pasūtījums jau ir piegādāts, tā statusu vairs nevar mainīt.
+                
+                if ($order->status === 'delivered') {
+                    throw new \RuntimeException('Šī pasūtījuma statusu vairs nevar mainīt!');
+                }
+
+                $orderedProducts = $order->orderedProducts()->lockForUpdate()->get(); // get() izpilda SQL vaicājumu un atgriež ar konkrēto pasūtījumu saistīto OrderedProduct modeļu kolekciju.
+
+                foreach ($orderedProducts as $orderedProduct) {
+                    $product = $orderedProduct->product()->lockForUpdate()->firstOrFail(); // firstOrFail() atgriež vienu Product modeļa eksemplāru, kas saistīts ar konkrēto pasūtījuma pozīciju, vai izmet izņēmumu, ja ieraksts nav atrasts.
+                    $orderedProduct->setRelation('product', $product);
+                }
+
+                $data = $request->validated();
+
+                // Ja pasūtījums jau ir atcelts, to nevar atcelt atkārtoti.
+
+                if ($order->status === 'cancelled' && $data['status'] === 'cancelled') {
+                    throw new \RuntimeException('Šis pasūtījums jau ir atcelts!');   
+                }
 
                 $message = 'Pasūtījuma statuss veiksmīgi atjaunināts!';
 
@@ -54,7 +63,7 @@ class AdminOrderController extends Controller
 
                 if ($data['status'] === 'cancelled') {
 
-                    foreach($order->orderedProducts as $orderedProduct) {
+                    foreach($orderedProducts as $orderedProduct) {
                         $orderedProduct->product->increment('stock_quantity', $orderedProduct->product_count);
                     }
 
@@ -66,14 +75,14 @@ class AdminOrderController extends Controller
 
                 if($order->status === 'cancelled' && $data['status'] !== 'cancelled') {
 
-                    foreach($order->orderedProducts as $orderedProduct) {
+                    foreach($orderedProducts as $orderedProduct) {
 
                         if($orderedProduct->product_count > $orderedProduct->product->stock_quantity) {
                             throw new \RuntimeException('Noliktavā nav pietiekošs produkta ' . $orderedProduct->product->name . ' skaits!');
                         } 
                     }
 
-                    foreach($order->orderedProducts as $orderedProduct) {
+                    foreach($orderedProducts as $orderedProduct) {
 
                         $orderedProduct->product->decrement('stock_quantity', $orderedProduct->product_count);
 

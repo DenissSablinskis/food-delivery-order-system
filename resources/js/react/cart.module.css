@@ -1,3 +1,4 @@
+/* Groza kopējais izkārtojums un pasūtījuma kopsumma */
 .cart {
     width: min(100% - 24px, 760px);
     margin: 32px auto;
@@ -65,6 +66,7 @@
     outline-offset: 3px;
 }
 
+/* Groza preču saraksts un daudzuma vadīklas */
 .items {
     overflow: hidden;
     border: 1px solid rgba(148, 163, 184, 0.4);
@@ -160,6 +162,7 @@
 }
 .removeButton:hover { border-color: #f87171; background: #fee2e2; }
 
+/* Tumšās tēmas krāsu pielāgojumi */
 :global([data-theme="dark"]) .cart {
     color: #f3f4f6;
     background: transparent;
@@ -215,6 +218,7 @@
     color: #fca5a5;
 }
 
+/* Šauru ekrānu groza izkārtojums */
 @media (max-width: 520px) {
     .cart {
         width: min(100% - 20px, 760px);

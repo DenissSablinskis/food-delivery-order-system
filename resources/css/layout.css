@@ -1,4 +1,4 @@
-/* Pamatstils */
+/* Lapas pamatizkārtojums */
 body {
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@ body {
     background-color: var(--bg);
 }
 
-/* Galvenes stils */
+/* Galvene, zīmols un navigācija */
 header {
     display: flex;
     align-items: center;
@@ -18,7 +18,6 @@ header {
     position: relative;
     background-color: var(--bg);
 
-    /* Logo stils */
     .logo {
     font-size: 22px;
     font-family: sans-serif;
@@ -29,7 +28,6 @@ header {
     }
     }
 
-    /* Burgera izvēlnes stils */
     .burger-menu {
         display: flex;
         flex-direction: column;
@@ -47,7 +45,6 @@ header {
             transition: all 0.3s ease;
         }
 
-        /* Burgera parveršana par krustiņu */
         &.open span:nth-child(1) {
             transform: translateY(8px) rotate(45deg);
         }
@@ -65,7 +62,6 @@ header {
 
     }
 
-    /* Izvēlnes stils */
     .nav-links {
         position: absolute;
         top: 100%;
@@ -145,18 +141,17 @@ header {
         }
     }
     
+    /* Valodas un krāsu motīva pārslēgšana */
     .langAndTheme {
 
         display: flex;
 
-        /* Valodas izvēlnes stils */
         .language-switcher{
             display: flex;
             align-items: center;
             gap: 7px;
             margin-right: 7px;
             form{
-                /* Lai forma aizņēmtu tikai pogas platumu */
                 display: inline-flex;
                 margin: 0;
                 padding: 0;
@@ -179,7 +174,6 @@ header {
             }
         }
       
-        /* Tēmas pārslēgšanas pogas stils */
         #themeToggle {
             border: none;
             background-image: var(--theme-icon);
@@ -190,7 +184,7 @@ header {
     }
 }
 
-/* Galvenā satura stils */
+/* Lapas galvenais saturs un responsīvie platuma ierobežojumi */
 main {
     color: var(--color);
     flex: 1;
@@ -253,7 +247,7 @@ main {
     
 }
 
-/* Kājene stils */
+/* Lapas kājene */
 footer {
     display: flex;
     justify-content: center;
