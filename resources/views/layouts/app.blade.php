@@ -18,7 +18,15 @@
         </main>
 
         <!-- Kājene -->
-        <footer>SIA "GAISMA" 2026</footer>
+        <footer>
+            <div class="footer-inner">
+                <span class="footer-brand">
+                    <span class="bi bi-basket2-fill" aria-hidden="true"></span>
+                    SIA “GAISMA”
+                </span>
+                <span class="footer-year">© 2026</span>
+            </div>
+        </footer>
 
     </body>
 </html>

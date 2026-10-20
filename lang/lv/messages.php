@@ -9,6 +9,8 @@ return [
     'navRegister'=> 'Reģistrēties',
     'navOrders'=> 'Mani pasūtījumi',
     'heading'=> 'Par uzņēmumu',
+    'homeEyebrow'=> 'Svaigi un rūpīgi izvēlēti produkti',
+    'homeSlogan'=> 'Svaigi produkti. Ērta piegāde.',
     'text'=> 'GAISMA pārtikas piegādes pasūtīšanas sistēma ir moderns risinājums ērtai un ātrai pārtikas produktu iegādei. Sistēma ļauj klientiem pārlūkot plašu pārtikas preču katalogu ar precīziem aprakstiem un cenām, viegli veidot un pārvaldīt iepirkumu grozu, izvēlēties piegādes laiku un adresi, kā arī saņemt pasūtījuma apstiprinājumu un piegādes statusa atjauninājumus.',
     'loginEmail'=>'Ievadiet e-pastu',
     'loginPassword'=>'Ievadiet paroli',
