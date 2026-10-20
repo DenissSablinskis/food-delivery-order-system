@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderedProduct;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CreateOrderRequest;
 
@@ -51,10 +52,19 @@ class ProductController extends Controller
                  
             ]);
 
+            $operator = User::where('role', 'operator')->inRandomOrder()->first();
+
+            if (!$operator) {
+                return response()->json([
+                    'message' => 'No operators available.'
+                ], 422);
+            }
+
             $order = Order::create([
                 'user_id' => auth()->id(),
                 'delivery_address' => $request->address,
                 'status' => 'new',
+                'operator_id' => $operator->id,
             ]);
 
             foreach ($request->cart as $item) {

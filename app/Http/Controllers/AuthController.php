@@ -38,6 +38,10 @@ class AuthController extends Controller
                 return redirect()->route('admin.orders.index');
             }
 
+            if (auth()->user()->role === 'operator') {
+                return redirect()->route('operator.orders.index');
+            }
+
             return redirect()->intended('/home');
         }
 

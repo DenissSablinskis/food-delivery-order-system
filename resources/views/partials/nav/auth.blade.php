@@ -11,6 +11,17 @@
     </nav>
 @endif
 
+<!--Operatora izvēlne -->
+@if (auth()->user()->role === 'operator')
+        <nav class="nav-links" id="navLinks">
+            <form method='post' action="{{ route('logout') }}">
+                @csrf
+                <button type="submit">{{ __('messages.navLogout') }}</button>
+            </form>
+        </nav>
+
+@endif
+
 <!-- Lietotāja izvēlne -->
 @if (auth()->user()->role === 'customer')
     <nav class="nav-links" id="navLinks">

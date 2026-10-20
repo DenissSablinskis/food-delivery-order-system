@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\OperatorController;
 
 Route::get('/', function () {
     return view('pages.home');
@@ -119,4 +120,18 @@ Route::middleware(['auth', 'role:admin'])
         Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
         
     });
+
+
+// Operatora paneļa maršruti 
+
+Route::middleware(['auth', 'role:operator'])
+    ->prefix('operator')
+    ->name('operator.')
+    ->group(function () {
+
+        Route::get('/orders', [OperatorController::class, 'index'])->name('orders.index');
+        Route::patch('/orders/{order}', [OperatorController::class, 'selectCourier'])->name('orders.select-courier');
+        Route::patch('/orders/{order}/start-processing', [OperatorController::class, 'startProcessing'])->name('orders.start-processing');
+    
+});
 
