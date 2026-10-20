@@ -39,18 +39,25 @@
                 <tbody>
                     @forelse($products as $product)
                         <tr>
+
                             <td class="admin-products-product-cell">
                                 <img src="{{ asset($product->image) }}" alt="" width="56" height="56">
                                 <span>{{ $product->name }}</span>
                             </td>
+
                             <td data-label="Daudzums noliktavā">{{ $product->stock_quantity }}</td>
+
                             <td data-label="Cena">{{ number_format($product->unit_price, 2, ',', ' ') }} €</td>
+
                             <td class="admin-products-action-cell" data-label="Darbības">
+
                                 <div class="admin-products-actions">
+
                                     <a href="{{ route('admin.products.edit', $product) }}" class="admin-products-edit-action">
                                         <span class="bi bi-pencil" aria-hidden="true"></span>
                                         Rediģēt
                                     </a>
+
                                     <form action="{{ route('admin.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Vai tiešām vēlaties dzēst šo produktu?')">
                                         @csrf
                                         @method('DELETE')
@@ -59,7 +66,9 @@
                                             Dzēst
                                         </button>
                                     </form>
+                                    
                                 </div>
+
                             </td>
                         </tr>
                     @empty

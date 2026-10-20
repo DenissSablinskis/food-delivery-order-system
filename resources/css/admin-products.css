@@ -283,7 +283,8 @@ main.admin-products-main {
             font-weight: 700;
         }
 
-        input {
+        input,
+        select {
             width: 100%;
             min-height: 46px;
             padding: 10px 13px;
@@ -300,6 +301,16 @@ main.admin-products-main {
                 box-shadow: var(--auth-form-input-focus-box-shadow);
             }
 
+            &:disabled {
+                border-color: #cbd5e1;
+                background: #e2e8f0;
+                color: #64748b;
+                cursor: not-allowed;
+                opacity: 1;
+            }
+        }
+
+        input {
             &[type="file"] {
                 padding: 7px;
                 font-size: 0.88rem;

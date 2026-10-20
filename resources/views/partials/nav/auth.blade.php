@@ -1,9 +1,9 @@
 <!-- Administratora izvēlne -->
 @if (auth()->user()->role === 'admin')
     <nav class="nav-links" id="navLinks">
-        <a href="#">Produkti</a>
-        <a href="#">Pasūtījumi</a>
-        <a href="#">Lietotāji</a>
+        <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.index') ? 'active-link' : '' }}">Produkti</a>
+        <a href="{{ route('admin.orders.index') }}" class="{{ request()->routeIs('admin.orders.index') ? 'active-link' : '' }}">Pasūtījumi</a>
+        <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.index') ? 'active-link' : '' }}">Lietotāji</a>
         <form method='post' action="{{ route('logout') }}">
             @csrf
             <button type="submit">{{ __('messages.navLogout') }}</button>
