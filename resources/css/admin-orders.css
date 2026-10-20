@@ -549,6 +549,10 @@ main {
             }
         }
 
+        .admin-order-form-controls.admin-courier-action-controls {
+            grid-template-columns: 1fr;
+        }
+
         /* Tukšā stāvokļa paziņojums, ja pasūtījumu nav */
         .admin-orders-empty {
             grid-column: 1 / -1;
