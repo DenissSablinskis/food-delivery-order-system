@@ -11,8 +11,8 @@
     </nav>
 @endif
 
-<!--Operatora izvēlne -->
-@if (auth()->user()->role === 'operator')
+<!--Operatora un kurjera izvēlne -->
+@if (auth()->user()->role === 'operator' || auth()->user()->role === 'courier')
         <nav class="nav-links" id="navLinks">
             <form method='post' action="{{ route('logout') }}">
                 @csrf

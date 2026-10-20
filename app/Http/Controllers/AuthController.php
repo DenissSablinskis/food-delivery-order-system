@@ -42,6 +42,10 @@ class AuthController extends Controller
                 return redirect()->route('operator.orders.index');
             }
 
+            if (auth()->user()->role === 'courier') {
+                return redirect()->route('courier.orders.index');
+            }
+
             return redirect()->intended('/home');
         }
 

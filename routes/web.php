@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\OperatorController;
+use App\Http\Controllers\CourierController;
 
 Route::get('/', function () {
     return view('pages.home');
@@ -134,4 +135,17 @@ Route::middleware(['auth', 'role:operator'])
         Route::patch('/orders/{order}/start-processing', [OperatorController::class, 'startProcessing'])->name('orders.start-processing');
     
 });
+
+Route::middleware(['auth', 'role:courier'])
+    ->prefix('courier')
+    ->name('courier.')
+    ->group(function () {
+
+        Route::get('/orders', [CourierController::class, 'index'])->name('orders.index');
+        Route::patch('/orders/{order}/start-delivery', [CourierController::class, 'startDelivery'])->name('orders.start-delivery');
+        Route::patch('/orders/{order}/complete', [CourierController::class, 'complete'])->name('orders.complete');
+    
+});
+
+
 
