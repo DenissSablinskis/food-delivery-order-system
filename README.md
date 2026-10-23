@@ -1,4 +1,4 @@
-[[LV]](#latviesu) [[EN]](#english) [[Ekrānšāviņi / Screenshots]](#screenshots)
+[[LV]](#latviesu) [[EN]](#english) [[Ekrānšāviņi / Screenshots]](#screenshots)  
 
 <a id="latviesu"></a>
 
@@ -18,6 +18,7 @@
 
 - PHP
 - Laravel 
+- React
 - MySQL 
 - Eloquent ORM 
 - Blade 
@@ -131,6 +132,12 @@ Lai pārbaudītu autentifikāciju, var izmantot iepriekš izveidoto testa lietot
 - **E-pasts:** sofija.berzina@gaisma.lv
 - **Parole:** sofija1234
 
+## Testēšana
+
+Projektā ir 45 Laravel Feature testi.
+
+Pilnu testu sarakstu un to rezultātus skatiet sadaļā [Testēšanas rezultāti](tests.md).
+
 <a id="english"></a>
 
 # Food Delivery Ordering System
@@ -149,6 +156,7 @@ This project is the final project for the "BUTS" training center. The main purpo
 
 - PHP
 - Laravel 
+- React
 - MySQL 
 - Eloquent ORM 
 - Blade 
@@ -260,6 +268,12 @@ To test the authentication, you can use the following pre-created test account:
 
 - **Email:** sofija.berzina@gaisma.lv
 - **Password:** sofija1234
+
+## Testing
+
+The project includes 45 Laravel Feature tests.
+
+See the [Testing Results](tests.md) for the full list of tests and their results.
 
 
 <a id="screenshots"></a>
