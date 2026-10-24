@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styles from './cart.module.css';
 import {updateCartCount, getCartKey} from '../cart';
 
-function App() {
+export function App() {
     const [cart, setCart] = useState(
         JSON.parse(localStorage.getItem(getCartKey())) || []
     );
@@ -72,6 +72,8 @@ function App() {
     );
 }
 
-const root = createRoot(document.getElementById('app'));
+const appElement = document.getElementById('app');
 
-root.render(<App />);
+if (appElement) {
+    createRoot(appElement).render(<App />);
+}

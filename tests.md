@@ -154,6 +154,51 @@
   Tests: 3 passed
 ```
 
+## React testēšanas rezultāti
+
+### CartItem komponentes testi
+
+1. Daudzuma palielināšana
+
+Pārbauda, vai, nospiežot pogu +, tiek izsaukta funkcija updateQuantity ar pareizu produkta ID un jauno daudzumu.
+
+2. Produkta noņemšana no groza
+
+Pārbauda, vai, nospiežot pogu ×, tiek izsaukta funkcija removeFromCart ar pareizu produkta ID.
+
+3. Daudzuma samazināšanas ierobežojums
+
+Pārbauda, vai produkta daudzumu nevar samazināt zem 1 un vai, nospiežot pogu −, funkcija updateQuantity netiek izsaukta, ja daudzums jau ir 1.
+
+4. Produkta informācijas attēlošana
+
+Pārbauda, vai groza elementā tiek attēlots pareizs produkta nosaukums, cena un daudzums.
+
+### Cart komponentes testi
+
+5. Tukša groza attēlošana
+
+Pārbauda, vai tukšā grozā tiek attēlots atbilstošs paziņojums un nav redzama poga saites veidā pārejai uz pasūtījuma noformēšanu.
+
+6. Kopējās cenas aprēķināšana
+
+Pārbauda, vai kopējā cena tiek aprēķināta pareizi, ņemot vērā katra produkta cenu un daudzumu.
+
+7. Daudzuma saglabāšana localStorage
+
+Pārbauda, vai pēc produkta daudzuma palielināšanas jaunais daudzums tiek saglabāts pārlūkprogrammas localStorage.
+
+8. Pasūtījuma noformēšanas saites attēlošana
+
+Pārbauda, vai grozā ar vismaz vienu produktu tiek attēlota saite uz /checkout.
+
+```bash
+PASS  tests/js/Cart.test.jsx
+PASS  tests/js/CartItem.test.jsx
+Test Suites: 2 passed, 2 total
+Tests:       8 passed, 8 total
+```
+
 <a id="english"></a>
 
 # Testing Results
@@ -308,3 +353,50 @@ PASS  Tests\Feature\AdminUserTest
 ✓ customer cannot update user
 Tests: 3 passed
 ```
+
+## React Testing Results
+
+### CartItem component tests
+
+1. Increasing product quantity
+
+Verifies that clicking the + button calls the updateQuantity function with the correct product ID and updated quantity.
+
+2. Removing a product from the cart
+
+Verifies that clicking the × button calls the removeFromCart function with the correct product ID.
+
+3. Minimum quantity restriction
+
+Verifies that the product quantity cannot be decreased below 1 and that the updateQuantity function is not called when the quantity is already 1 and the − button is clicked.
+
+4. Displaying product information
+
+Verifies that the cart item displays the correct product name, price, and quantity.
+
+### Cart component tests
+
+5. Displaying an empty cart
+
+Verifies that an appropriate message is displayed when the cart is empty and that the checkout link is not visible.
+
+6. Calculating the total price
+
+Verifies that the total price is calculated correctly based on each product's price and quantity.
+
+7. Saving quantity to localStorage
+
+Verifies that the updated product quantity is saved to the browser's localStorage after clicking the + button.
+
+8. Displaying the checkout link
+
+Verifies that the link to /checkout is displayed when the cart contains at least one product.
+
+```bash
+PASS  tests/js/Cart.test.jsx
+PASS  tests/js/CartItem.test.jsx
+Test Suites: 2 passed, 2 total
+Tests:       8 passed, 8 total
+```
+
+

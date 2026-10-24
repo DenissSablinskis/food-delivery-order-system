@@ -134,7 +134,7 @@ Lai pārbaudītu autentifikāciju, var izmantot iepriekš izveidoto testa lietot
 
 ## Testēšana
 
-Projektā ir 45 Laravel Feature testi.
+Projektā ir 45 Laravel Feature testi, 8 React Ject testi.
 
 Pilnu testu sarakstu un to rezultātus skatiet sadaļā [Testēšanas rezultāti](tests.md).
 
@@ -271,7 +271,7 @@ To test the authentication, you can use the following pre-created test account:
 
 ## Testing
 
-The project includes 45 Laravel Feature tests.
+The project includes 45 Laravel Feature tests, 8 React Jest tests.
 
 See the [Testing Results](tests.md) for the full list of tests and their results.
 
