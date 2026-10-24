@@ -7,7 +7,6 @@ use App\Http\Controllers\ProductController;
 use App\Models\Order;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
@@ -91,8 +90,6 @@ Route::middleware(['auth', 'role:admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
-
-        Route::get('/', [AdminController::class, 'index'])->name('index');
 
         // Pasūtījumu administrēšana
 

@@ -75,7 +75,7 @@ Copy-Item .env.example .env
 php artisan key:generate
 ```
 
-**### 5. Publiskās krātuves saites izveide**
+### 5. Publiskās krātuves saites izveide
 
 ```bash
 php artisan storage:link
@@ -170,7 +170,7 @@ Lai pārbaudītu projekta darbību, var izmantot iepriekš izveidotus testa liet
 
 ## Testēšana
 
-Projektā ir 45 Laravel Feature testi, 8 React Ject testi.
+Projektā ir 45 Laravel Feature testi, 8 React Ject testi un 20 manuālie testi.
 
 Lai palaistu Laravel testus:
 
@@ -354,7 +354,7 @@ The following test accounts can be used to explore the application's functionali
 
 ## Testing
 
-The project includes 45 Laravel Feature tests, 8 React Jest tests.
+The project includes 45 Laravel Feature tests, 8 React Jest tests and 20 manual tests.
 
 To run Laravel tests:
 
