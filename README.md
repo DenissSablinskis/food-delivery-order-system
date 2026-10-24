@@ -8,29 +8,45 @@
 
 ## Funkcijas
 
-- 🔐 **Lietotāju autentifikācija un reģistrācija** – iespēja reģistrēties un autentificeties, izmantojot e-pastu un paroli.
+- 🔐 **Lietotāju autentifikācija un reģistrācija** – iespēja reģistrēties un autentificēties, izmantojot e-pastu un paroli.
 - 📦 **Produktu saraksta pārlūkošana** – pieejamo produktu saraksts ir redzams gan reģistrētiem lietotājiem, gan vietnes viesiem.
 - 🌙 **Tēmas izvēle** – lietotājs var ērti pārslēgties starp gaišo un tumšo vizuālo tēmu.
 - 🌐 **Daudzvalodu atbalsts** – sistēmas saskarne ir lokalizēta un pieejama latviešu un angļu valodā.
 - 📱 **Adaptīvs dizains** – saskarne ir optimizēta un ērti lietojama gan datorā, gan planšetdatorā, gan mobilajā tālrunī.
+- 🛒 **Iepirkumu grozs** – iespēja pievienot produktus grozam, mainīt to daudzumu, noņemt produktus un apskatīt kopējo cenu.
+- 🧾 **Pasūtījuma noformēšana** – iespēja noformēt pasūtījumu, norādot nepieciešamo informāciju.
+- 📋 **Pasūtījumu pārvaldība** – iespēja apskatīt un pārvaldīt pasūtījumus atbilstoši lietotāja lomai.
+- 👤 **Profila datu rediģēšana** – lietotājs var apskatīt un mainīt sava profila datus.
+- 🔑 **Paroles maiņa** – lietotājs var nomainīt sava konta paroli.
+- 👨‍💼 **Lomu un piekļuves tiesību pārvaldība** – sistēma nodrošina atšķirīgas iespējas administratoriem, operatoriem, kurjeriem un klientiem.
+- 📦 **Noliktavas atlikumu pārvaldība** – produktu atlikumi tiek atjaunināti atbilstoši pasūtījumiem un to izmaiņām.
+- 🧑‍💼 **Pasūtījumu apstrāde operatora lomā** – operators var apskatīt viņam piešķirtos pasūtījumus, uzsākt to apstrādi un piešķirt kurjeru.
+- 🚚 **Pasūtījumu piegādes pārvaldība** – kurjers var uzsākt viņam piešķirtā pasūtījuma piegādi un atzīmēt to kā piegādātu.
+- 🧾 **PDF pasūtījuma čeka ģenerēšana** – sistēma nodrošina iespēju ģenerēt un lejupielādēt PDF dokumentu ar pasūtījuma informāciju.
+- 📋 **Pasūtījumu administrēšana** – administrators var apskatīt visus pasūtījumus, mainīt to statusus, rediģēt pasūtījumu saturu, atcelt pasūtījumus un atjaunot atceltos pasūtījumus.
+- 🛠️ **Produktu administrēšana** – administratoram ir iespēja pievienot, rediģēt un pārvaldīt produktus.
+- 👥 **Lietotāju administrēšana** – administratoram ir iespēja apskatīt un pārvaldīt sistēmas lietotājus.
 
 ## Tehnoloģijas
 
 - PHP
-- Laravel 
+- Laravel
 - React
-- MySQL 
-- Eloquent ORM 
-- Blade 
+- MySQL
+- Eloquent ORM
+- Blade
+- HTML
 - SCSS
 - JavaScript
+- Vite
+- Git
 
 ## Prasības 
 
 1. PHP 8.2+
 2. Composer
 3. Node.js 20+ un npm
-4. MySQL (vai cita datubāze, kas konfigurēta `.env` failā)
+4. MySQL
 5. Git
 
 ## Installēšana
@@ -58,7 +74,14 @@ Copy-Item .env.example .env
 ```bash
 php artisan key:generate
 ```
-### 5. Datubāzes konfigurēšana
+
+**### 5. Publiskās krātuves saites izveide**
+
+```bash
+php artisan storage:link
+```
+
+### 6. Datubāzes konfigurēšana
 
 Atjaunini šādas vērtības .env failā:
 ```.env
@@ -71,15 +94,15 @@ DB_PASSWORD
 ```
 
 Izveido datubāzi pirms palaist migrācijas.
-### 6. Migrāciju un seederu palaišana
+### 7. Migrāciju un seederu palaišana
 ```bash
 php artisan migrate:fresh --seed
 ```
-### 7. Frontend atkarību instalēšana
+### 8. Frontend atkarību instalēšana
 ```bash
 npm install
 ```
-### 8. Frontend resursu izveide
+### 9. Frontend resursu izveide
 ```bash
 npm run build
 ```
@@ -88,11 +111,11 @@ Ja PowerShell bloķē npm komandu, izmanto:
 ```PowerShell
 npm.cmd run build
 ```
-### 9. Lietotnes palaišana
+### 10. Lietotnes palaišana
 ```bash
 php artisan serve
 ```
-### 10. Atver lietotni pārlūkprogrammā
+### 11. Atver lietotni pārlūkprogrammā
 ```
 http://127.0.0.1:8000
 ```
@@ -125,16 +148,40 @@ Relācijas:
 - `Produkts` hasMany `Pasūtītie produkti`
 - `Pasūtītais produkts` belongsTo `Produkts`
 
-## Demonstrācijas konts
+## Demonstrācijas konti
 
-Lai pārbaudītu autentifikāciju, var izmantot iepriekš izveidoto testa lietotāju:
+Lai pārbaudītu projekta darbību, var izmantot iepriekš izveidotus testa lietotājus:
 
+#### Lietotājs
 - **E-pasts:** sofija.berzina@gaisma.lv
 - **Parole:** sofija1234
+
+#### Administrators
+- **E-pasts:** admin@gaisma.lv
+- **Parole:** admin1234
+
+#### Operators
+- **E-pasts:** laura.ozola@gaisma.lv
+- **Parole:** laura1234
+
+#### Kurjers
+- **E-pasts:** kristine.kalnina@gaisma.lv
+- **Parole:** kristine1234
 
 ## Testēšana
 
 Projektā ir 45 Laravel Feature testi, 8 React Ject testi.
+
+Lai palaistu Laravel testus:
+
+```bash
+php artisan test
+```
+
+Lai palaistu React testus:
+```bash
+npm test
+```
 
 Pilnu testu sarakstu un to rezultātus skatiet sadaļā [Testēšanas rezultāti](tests.md).
 
@@ -146,29 +193,45 @@ This project is the final project for the "BUTS" training center. The main purpo
 
 ## Features
 
-- 🔐 **User authentication and registration** -  possibility to register and log in using e-mail and password.
-- 📦 **Product list browsing** - the list of products is available for both registered users and guests.
-- 🌙 **Theme switching** - users can switch between light and dark themes.
-- 🌐 **Multilanguage support** - the system is available in Latvian and English.
-- 📱 **Responsive design** - the user interface can be used on computers, tablets, or mobile phones.
+- 🔐 **User authentication and registration** – users can register and log in using an email address and password.
+- 📦 **Product list browsing** – the list of available products is accessible to both registered users and guests.
+- 🌙 **Theme selection** – users can easily switch between light and dark themes.
+- 🌐 **Multilingual support** – the system interface is available in Latvian and English.
+- 📱 **Responsive design** – the interface is optimized for use on computers, tablets, and mobile phones.
+- 🛒 **Shopping cart** – users can add products to the cart, change quantities, remove products, and view the total price.
+- 🧾 **Order placement** – users can place orders by providing the required information.
+- 📋 **Order management** – orders can be viewed and managed according to the user's role.
+- 👤 **Profile editing** – users can view and update their profile information.
+- 🔑 **Password change** – users can change their account password.
+- 👨‍💼 **Role and access control** – the system provides different permissions for administrators, operators, couriers, and customers.
+- 📦 **Inventory management** – product stock quantities are updated according to orders and changes made to them.
+- 🧑‍💼 **Order processing by operators** – operators can view their assigned orders, start processing them, and assign a courier.
+- 🚚 **Delivery management** – couriers can start delivering their assigned orders and mark them as delivered.
+- 🧾 **PDF receipt generation** – the system allows users to generate and download a PDF document containing order information.
+- 📋 **Order administration** – administrators can view all orders, change their statuses, edit order contents, cancel orders, and restore cancelled orders.
+- 🛠️ **Product administration** – administrators can add, edit, and manage products.
+- 👥 **User administration** – administrators can view and manage system users.
 
 ## Technologies
 
 - PHP
-- Laravel 
+- Laravel
 - React
-- MySQL 
-- Eloquent ORM 
-- Blade 
+- MySQL
+- Eloquent ORM
+- Blade
+- HTML
 - SCSS
 - JavaScript
+- Vite
+- Git
 
 ## Requirements
 
 1. PHP 8.2+
 2. Composer
 3. Node.js 20+ and npm
-4. MySQL (or another database configured in the `.env` file)
+4. MySQL
 5. Git
 
 ## Installation
@@ -195,7 +258,14 @@ Copy-Item .env.example .env
 ```bash
 php artisan key:generate
 ```
-### 5. Configure the database
+
+### 5. Create the Public Storage Link
+
+```bash
+php artisan storage:link
+```
+
+### 6. Configure the database
 
 Update the database settings in the `.env` file:
 
@@ -209,15 +279,15 @@ DB_PASSWORD
 ```
 
 Create the database before running migrations.
-### 6. Run migrations and seeders
+### 7. Run migrations and seeders
 ```bash
 php artisan migrate:fresh --seed
 ```
-### 7. Install frontend dependencies
+### 8. Install frontend dependencies
 ```bash
 npm install
 ```
-### 8. Build frontend assets
+### 9. Build frontend assets
 ```bash
 npm run build
 ```
@@ -225,11 +295,11 @@ If PowerShell blocks the npm command, use:
 ```PowerShell
 npm.cmd run build
 ```
-### 9. Run the application
+### 10. Run the application
 ```bash
 php artisan serve
 ```
-### 10. Open in browser
+### 11. Open in browser
 ```
 http://127.0.0.1:8000
 ```
@@ -262,16 +332,40 @@ These relationships are defined in the Eloquent models:
 - `Product` hasMany `Ordered products`
 - `Ordered product` belongsTo `Product`
 
-## Demo Account
+## Demo Accounts
 
-To test the authentication, you can use the following pre-created test account:
+The following test accounts can be used to explore the application's functionality.
 
+### Customer
 - **Email:** sofija.berzina@gaisma.lv
 - **Password:** sofija1234
+
+### Administrator
+- **Email:** admin@gaisma.lv
+- **Password:** admin1234
+
+### Operator
+- **Email:** laura.ozola@gaisma.lv
+- **Password:** laura1234
+
+### Courier
+- **Email:** kristine.kalnina@gaisma.lv
+- **Password:** kristine1234
 
 ## Testing
 
 The project includes 45 Laravel Feature tests, 8 React Jest tests.
+
+To run Laravel tests:
+
+```bash
+php artisan test
+```
+
+To run React tests:
+```bash
+npm test
+```
 
 See the [Testing Results](tests.md) for the full list of tests and their results.
 
